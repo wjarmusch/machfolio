@@ -1,0 +1,15 @@
+{{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=0" -}}
+{{- $csv := resources.GetRemote $url -}}
+{{- $rows := $csv | transform.Unmarshal -}}
+{{- $headers := index $rows 0 -}}
+{{- $entries := slice -}}
+{{- range $i, $row := $rows -}}
+  {{- if gt $i 0 -}}
+    {{- $entry := dict -}}
+    {{- range $j, $header := $headers -}}
+      {{- $entry = merge $entry (dict $header (index $row $j)) -}}
+    {{- end -}}
+    {{- $entries = append $entry $entries -}}
+  {{- end -}}
+{{- end -}}
+{{- return $entries -}}

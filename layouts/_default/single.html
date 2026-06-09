@@ -1,0 +1,171 @@
+{{ define "title" }}{{ .Params.machine_name }} — MachFolio{{ end }}
+{{ define "description" }}{{ .Params.who_its_for | truncate 160 }}{{ end }}
+
+{{ define "main" }}
+
+{{/* ---- Breadcrumb ---- */}}
+<nav class="breadcrumb">
+  <a href="/">MachFolio</a>
+  <span>/</span>
+  <a href="/{{ .Params.category_slug }}">{{ .Params.category }}</a>
+  <span>/</span>
+  {{ .Params.machine_name }}
+</nav>
+
+{{/* ---- Entry Header ---- */}}
+<div class="entry-header">
+  <h1 class="entry-title">
+    {{ .Params.machine_name }}
+    {{- $tierSlug := replace (lower .Params.tier) " " "-" -}}
+    <span class="tier-badge tier-badge--{{ $tierSlug }}">{{ .Params.tier }}</span>
+  </h1>
+  <p class="entry-meta">
+    <span>{{ .Params.manufacturer }}</span>
+    <span>{{ .Params.category }}</span>
+    {{ if .Params.current_price }}<span>${{ .Params.current_price }}</span>{{ end }}
+    {{ if .Params.release_year }}<span>{{ .Params.release_year }}</span>{{ end }}
+  </p>
+</div>
+
+{{/* ---- Two-column layout ---- */}}
+<div class="entry-layout">
+
+  {{/* ---- LEFT COLUMN: Specs + Affiliate buttons ---- */}}
+  <div class="entry-col-left">
+
+    <h2 class="section-header">Specifications</h2>
+    <table class="spec-table">
+      {{ if .Params.current_price }}
+      <tr><td>Price</td><td>${{ .Params.current_price }}</td></tr>
+      {{ end }}
+      {{ if .Params.motor_hp }}
+      <tr><td>Motor</td><td>{{ .Params.motor_hp }} HP</td></tr>
+      {{ end }}
+      {{ if .Params.voltage }}
+      <tr><td>Voltage</td><td>{{ .Params.voltage }}</td></tr>
+      {{ end }}
+      {{ if .Params.blade_size }}
+      <tr><td>Blade Size</td><td>{{ .Params.blade_size }}</td></tr>
+      {{ end }}
+      {{ if .Params.cut_capacity_height }}
+      <tr><td>Cut Height</td><td>{{ .Params.cut_capacity_height }}"</td></tr>
+      {{ end }}
+      {{ if .Params.cut_capacity_width }}
+      <tr><td>Cut Width</td><td>{{ .Params.cut_capacity_width }}"</td></tr>
+      {{ end }}
+      {{ if .Params.table_dimensions }}
+      <tr><td>Table</td><td>{{ .Params.table_dimensions }}</td></tr>
+      {{ end }}
+      {{ if .Params.weight_lbs }}
+      <tr><td>Weight</td><td>{{ .Params.weight_lbs }} lbs</td></tr>
+      {{ end }}
+      {{ if .Params.dust_port_diameter }}
+      <tr><td>Dust Port</td><td>{{ .Params.dust_port_diameter }}"</td></tr>
+      {{ end }}
+    </table>
+
+    {{/* Affiliate buttons */}}
+    {{ if .Params.affiliate_link_1 }}
+    <a href="{{ .Params.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+      Buy at {{ .Params.affiliate_retailer_1 }}
+    </a>
+    {{ end }}
+    {{ if .Params.affiliate_link_2 }}
+    <a href="{{ .Params.affiliate_link_2 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+      Buy at {{ .Params.affiliate_retailer_2 }}
+    </a>
+    {{ end }}
+    {{ if .Params.affiliate_link_3 }}
+    <a href="{{ .Params.affiliate_link_3 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+      Buy at {{ .Params.affiliate_retailer_3 }}
+    </a>
+    {{ end }}
+
+  </div>{{/* end left column */}}
+
+  {{/* ---- RIGHT COLUMN: Content ---- */}}
+  <div class="entry-col-right">
+
+    {{/* Who it's for */}}
+    {{ if .Params.who_its_for }}
+    <h2 class="section-header">Who It's For</h2>
+    <div class="prose">
+      <p>{{ .Params.who_its_for }}</p>
+    </div>
+    {{ end }}
+
+    {{/* Owner praise */}}
+    {{ if .Params.owner_praise }}
+    <h2 class="section-header">What Owners Praise</h2>
+    <div class="prose">
+      <ul>
+        {{ range split .Params.owner_praise "|" }}
+          {{ if . }}<li>{{ . | strings.TrimSpace }}</li>{{ end }}
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{/* Owner limitations */}}
+    {{ if .Params.owner_limitations }}
+    <h2 class="section-header">What Owners Report as Limitations</h2>
+    <div class="prose">
+      <ul>
+        {{ range split .Params.owner_limitations "|" }}
+          {{ if . }}<li>{{ . | strings.TrimSpace }}</li>{{ end }}
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+    {{/* Upgrade compatibility */}}
+    {{ if .Params.upgrade_compatibility }}
+    <h2 class="section-header">Upgrades &amp; Compatibility</h2>
+    <div class="prose">
+      <p>{{ .Params.upgrade_compatibility }}</p>
+    </div>
+    {{ end }}
+
+    {{/* Alternatives */}}
+    {{ if or .Params.compare_1_slug .Params.compare_2_slug .Params.compare_3_slug }}
+    <h2 class="section-header">Alternatives to Consider</h2>
+    <div class="prose">
+      <ul>
+        {{ if .Params.compare_1_slug }}
+        <li>
+          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_1_slug }}">
+            {{ replace .Params.compare_1_slug "-" " " | title }}
+          </a>
+          {{ if .Params.compare_1_note }} — {{ .Params.compare_1_note }}{{ end }}
+        </li>
+        {{ end }}
+        {{ if .Params.compare_2_slug }}
+        <li>
+          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_2_slug }}">
+            {{ replace .Params.compare_2_slug "-" " " | title }}
+          </a>
+          {{ if .Params.compare_2_note }} — {{ .Params.compare_2_note }}{{ end }}
+        </li>
+        {{ end }}
+        {{ if .Params.compare_3_slug }}
+        <li>
+          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_3_slug }}">
+            {{ replace .Params.compare_3_slug "-" " " | title }}
+          </a>
+          {{ if .Params.compare_3_note }} — {{ .Params.compare_3_note }}{{ end }}
+        </li>
+        {{ end }}
+      </ul>
+    </div>
+    {{ end }}
+
+  </div>{{/* end right column */}}
+
+</div>{{/* end entry-layout */}}
+
+{{/* Sourcing note */}}
+<p class="sourcing-note">
+  Specs sourced from manufacturer documentation. Owner feedback reflects community reports from r/woodworking, Sawmill Creek, and Amazon verified reviews. Prices may vary by retailer and change over time.
+</p>
+
+{{ end }}

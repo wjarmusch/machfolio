@@ -6,6 +6,9 @@ title = "MachFolio"
   description = "Specs, comparisons, and owner-sourced verdicts for woodworking machinery."
   sheetCSV = "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=0"
 
+[contentAdapters]
+  enableGoTemplates = true
+
 [build]
   writeStats = true
 

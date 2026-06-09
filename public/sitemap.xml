@@ -2,10 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://machfolio.com/band-saws/bauer-9in-benchtop-band-saw-70630/</loc>
+    <priority>0</priority>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://machfolio.com/band-saws/jet-jwbs-10os/</loc>
+    <priority>0</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://machfolio.com/band-saws/powermatic-pm1500b/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://machfolio.com/band-saws/rikon-10-305/</loc>
+    <priority>0</priority>
+  </url><url>
+    <loc>https://machfolio.com/band-saws/</loc>
+  </url><url>
+    <loc>https://machfolio.com/categories/</loc>
+  </url><url>
+    <loc>https://machfolio.com/</loc>
+  </url><url>
+    <loc>https://machfolio.com/tags/</loc>
   </url>
 </urlset>
