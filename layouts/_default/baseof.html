@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-logo">MachFolio</a>
+      <nav class="site-nav">
+        <a href="/band-saws">Band Saws</a>
+        <a href="/table-saws">Table Saws</a>
+        <a href="/jointers">Jointers</a>
+        <a href="/planers">Planers</a>
+        <a href="/miter-saws">Miter Saws</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main">
+    <div class="container">
+      {{ block "main" . }}{{ end }}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Specs sourced from manufacturer documentation. Owner feedback reflects community reports from r/woodworking, Sawmill Creek, and Amazon verified reviews.</p>
+      <p>&copy; {{ now.Year }} MachFolio</p>
+    </div>
+  </footer>
+</body>
+</html>
