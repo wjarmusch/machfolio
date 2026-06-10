@@ -9,6 +9,10 @@ title = "MachFolio"
 [contentAdapters]
   enableGoTemplates = true
 
+[caches]
+  [caches.getresource]
+    maxAge = "0s"
+
 [build]
   writeStats = true
 
