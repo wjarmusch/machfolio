@@ -290,3 +290,28 @@ body {
   margin-top: 40px;
   font-style: italic;
 }
+
+/* Category index page */
+.category-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.category-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.category-meta {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.no-entries {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-top: 24px;
+}

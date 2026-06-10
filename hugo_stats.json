@@ -26,7 +26,15 @@
     "classes": [
       "affiliate-btn",
       "breadcrumb",
+      "card-grid",
+      "category-header",
+      "category-meta",
+      "category-title",
       "container",
+      "entry-card",
+      "entry-card-excerpt",
+      "entry-card-meta",
+      "entry-card-title",
       "entry-col-left",
       "entry-col-right",
       "entry-header",
@@ -45,7 +53,7 @@
       "tier-badge",
       "tier-badge--hobbyist",
       "tier-badge--semi-pro",
-      "tier-badge--weekend-warrior"
+      "tier-badge--serious-hobbyist"
     ],
     "ids": null
   }

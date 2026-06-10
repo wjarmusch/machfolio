@@ -1,0 +1,77 @@
+{{ define "title" }}{{ .Params.category_display }}s — MachFolio{{ end }}
+{{ define "description" }}Specs, comparisons, and owner-sourced verdicts for {{ .Params.category_display | lower }}s. Find the right machine at every price tier.{{ end }}
+
+{{ define "main" }}
+
+{{/* ---- Page header ---- */}}
+<div class="category-header">
+  <h1 class="category-title">{{ .Params.category_display }}s</h1>
+  {{ with .Params.entries }}
+  <p class="category-meta">{{ len . }} entries</p>
+  {{ end }}
+</div>
+
+{{/* ---- Sort entries by tier using buckets ---- */}}
+{{- $entries := .Params.entries -}}
+
+{{- $pro := slice -}}
+{{- $semipro := slice -}}
+{{- $serious := slice -}}
+{{- $hobbyist := slice -}}
+{{- $weekend := slice -}}
+
+{{- range $entries -}}
+  {{- $tier := index . "tier" -}}
+  {{- if eq $tier "Professional" }}{{- $pro = $pro | append . -}}{{- end -}}
+  {{- if eq $tier "Semi-Pro" }}{{- $semipro = $semipro | append . -}}{{- end -}}
+  {{- if eq $tier "Serious Hobbyist" }}{{- $serious = $serious | append . -}}{{- end -}}
+  {{- if eq $tier "Hobbyist" }}{{- $hobbyist = $hobbyist | append . -}}{{- end -}}
+  {{- if eq $tier "Weekend Warrior" }}{{- $weekend = $weekend | append . -}}{{- end -}}
+{{- end -}}
+
+{{- $orderedEntries := $pro | append $semipro | append $serious | append $hobbyist | append $weekend -}}
+
+{{/* ---- Card grid ---- */}}
+{{ if $orderedEntries }}
+<div class="card-grid">
+  {{ range $orderedEntries }}
+  {{- $machineName := index . "machine_name" -}}
+  {{- $machineSlug := index . "machine_slug" -}}
+  {{- $tier := index . "tier" -}}
+  {{- $manufacturer := index . "manufacturer" -}}
+  {{- $price := index . "current_price" -}}
+  {{- $whoItsFor := index . "who_its_for" -}}
+  {{- $category := index . "category" -}}
+  {{- $categorySlug := index . "category_slug" -}}
+  {{- if not $categorySlug -}}
+    {{- if eq $category "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+    {{- if eq $category "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+    {{- if eq $category "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+    {{- if eq $category "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+    {{- if eq $category "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+    {{- if eq $category "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+    {{- if eq $category "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+  {{- end -}}
+  <a href="/{{ $categorySlug }}/{{ $machineSlug }}" class="entry-card">
+    <div class="entry-card-title">
+      {{ $machineName }}
+      {{- $tierSlug := replace (lower $tier) " " "-" -}}
+      <span class="tier-badge tier-badge--{{ $tierSlug }}">{{ $tier }}</span>
+    </div>
+    <div class="entry-card-meta">
+      {{ $manufacturer }}
+      {{ if $price }} &middot; ${{ $price }}{{ end }}
+    </div>
+    {{ if $whoItsFor }}
+    <div class="entry-card-excerpt">
+      {{ $whoItsFor | truncate 120 }}
+    </div>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ else }}
+<p class="no-entries">No entries in this category yet.</p>
+{{ end }}
+
+{{ end }}

@@ -1,0 +1,8 @@
+{{- $tier := . -}}
+{{- $order := 0 -}}
+{{- if eq $tier "Professional" }}{{- $order = 1 -}}{{- end -}}
+{{- if eq $tier "Semi-Pro" }}{{- $order = 2 -}}{{- end -}}
+{{- if eq $tier "Serious Hobbyist" }}{{- $order = 3 -}}{{- end -}}
+{{- if eq $tier "Hobbyist" }}{{- $order = 4 -}}{{- end -}}
+{{- if eq $tier "Weekend Warrior" }}{{- $order = 5 -}}{{- end -}}
+{{- return $order -}}

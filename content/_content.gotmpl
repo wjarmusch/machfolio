@@ -3,65 +3,116 @@
 {{- $rows := $csv | transform.Unmarshal -}}
 {{- $headers := index $rows 0 -}}
 
+{{/* ---- Build processed entries slice from CSV rows ---- */}}
+{{- $allEntries := slice -}}
 {{- range $i, $row := $rows -}}
   {{- if gt $i 0 -}}
     {{- $entry := dict -}}
     {{- range $j, $header := $headers -}}
       {{- $entry = merge $entry (dict $header (index $row $j)) -}}
     {{- end -}}
+    {{- $allEntries = append $entry $allEntries -}}
+  {{- end -}}
+{{- end -}}
 
-    {{- if eq (index $entry "status") "Live" -}}
+{{/* ---- Generate individual entry pages ---- */}}
+{{- range $allEntries -}}
+  {{- if eq (index . "status") "Live" -}}
 
-      {{- $categorySlug := "" -}}
-      {{- if eq (index $entry "category") "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-      {{- if eq (index $entry "category") "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+    {{- $categorySlug := "" -}}
+    {{- if eq (index . "category") "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+    {{- if eq (index . "category") "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+    {{- if eq (index . "category") "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+    {{- if eq (index . "category") "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+    {{- if eq (index . "category") "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+    {{- if eq (index . "category") "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+    {{- if eq (index . "category") "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
 
-      {{- $path := printf "%s/%s" $categorySlug (index $entry "machine_slug") -}}
+    {{- $path := printf "%s/%s" $categorySlug (index . "machine_slug") -}}
 
-      {{- $.AddPage (dict
-        "kind" "page"
-        "path" $path
-        "params" (dict
-          "machine_name" (index $entry "machine_name")
-          "manufacturer" (index $entry "manufacturer")
-          "category" (index $entry "category")
-          "category_slug" $categorySlug
-          "release_year" (index $entry "release_year")
-          "current_price" (index $entry "current_price")
-          "price_last_updated" (index $entry "price_last_updated")
-          "motor_hp" (index $entry "motor_hp")
-          "voltage" (index $entry "voltage")
-          "blade_size" (index $entry "blade_size")
-          "cut_capacity_height" (index $entry "cut_capacity_height")
-          "cut_capacity_width" (index $entry "cut_capacity_width")
-          "table_dimensions" (index $entry "table_dimensions")
-          "weight_lbs" (index $entry "weight_lbs")
-          "dust_port_diameter" (index $entry "dust_port_diameter")
-          "tier" (index $entry "tier")
-          "who_its_for" (index $entry "who_its_for")
-          "owner_praise" (index $entry "owner_praise")
-          "owner_limitations" (index $entry "owner_limitations")
-          "upgrade_compatibility" (index $entry "upgrade_compatibility")
-          "affiliate_link_1" (index $entry "affiliate_link_1")
-          "affiliate_retailer_1" (index $entry "affiliate_retailer_1")
-          "affiliate_link_2" (index $entry "affiliate_link_2")
-          "affiliate_retailer_2" (index $entry "affiliate_retailer_2")
-          "affiliate_link_3" (index $entry "affiliate_link_3")
-          "affiliate_retailer_3" (index $entry "affiliate_retailer_3")
-          "compare_1_slug" (index $entry "compare_1_slug")
-          "compare_1_note" (index $entry "compare_1_note")
-          "compare_2_slug" (index $entry "compare_2_slug")
-          "compare_2_note" (index $entry "compare_2_note")
-          "compare_3_slug" (index $entry "compare_3_slug")
-          "compare_3_note" (index $entry "compare_3_note")
-        )
-      ) -}}
+    {{- $.AddPage (dict
+      "kind" "page"
+      "path" $path
+      "params" (dict
+        "machine_name" (index . "machine_name")
+        "manufacturer" (index . "manufacturer")
+        "category" (index . "category")
+        "category_slug" $categorySlug
+        "release_year" (index . "release_year")
+        "current_price" (index . "current_price")
+        "price_last_updated" (index . "price_last_updated")
+        "motor_hp" (index . "motor_hp")
+        "voltage" (index . "voltage")
+        "blade_size" (index . "blade_size")
+        "cut_capacity_height" (index . "cut_capacity_height")
+        "cut_capacity_width" (index . "cut_capacity_width")
+        "table_dimensions" (index . "table_dimensions")
+        "weight_lbs" (index . "weight_lbs")
+        "dust_port_diameter" (index . "dust_port_diameter")
+        "tier" (index . "tier")
+        "who_its_for" (index . "who_its_for")
+        "owner_praise" (index . "owner_praise")
+        "owner_limitations" (index . "owner_limitations")
+        "upgrade_compatibility" (index . "upgrade_compatibility")
+        "affiliate_link_1" (index . "affiliate_link_1")
+        "affiliate_retailer_1" (index . "affiliate_retailer_1")
+        "affiliate_link_2" (index . "affiliate_link_2")
+        "affiliate_retailer_2" (index . "affiliate_retailer_2")
+        "affiliate_link_3" (index . "affiliate_link_3")
+        "affiliate_retailer_3" (index . "affiliate_retailer_3")
+        "compare_1_slug" (index . "compare_1_slug")
+        "compare_1_note" (index . "compare_1_note")
+        "compare_2_slug" (index . "compare_2_slug")
+        "compare_2_note" (index . "compare_2_note")
+        "compare_3_slug" (index . "compare_3_slug")
+        "compare_3_note" (index . "compare_3_note")
+      )
+    ) -}}
 
+  {{- end -}}
+{{- end -}}
+
+{{/* ---- Generate category index pages ---- */}}
+{{/* Collect unique categories from Live entries */}}
+{{- $categories := slice -}}
+{{- range $allEntries -}}
+  {{- if eq (index . "status") "Live" -}}
+    {{- $cat := index . "category" -}}
+    {{- if not (in $categories $cat) -}}
+      {{- $categories = $categories | append $cat -}}
     {{- end -}}
   {{- end -}}
+{{- end -}}
+
+{{/* Add one section page per category */}}
+{{- range $categories -}}
+  {{- $cat := . -}}
+
+  {{- $categorySlug := "" -}}
+  {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+  {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+  {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+  {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+  {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+  {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+  {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+
+  {{/* Collect entries for this category */}}
+  {{- $catEntries := slice -}}
+  {{- range $allEntries -}}
+    {{- if and (eq (index . "status") "Live") (eq (index . "category") $cat) -}}
+      {{- $catEntries = $catEntries | append . -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $.AddPage (dict
+    "kind" "section"
+    "path" $categorySlug
+    "params" (dict
+      "category_display" $cat
+      "category_slug" $categorySlug
+      "entries" $catEntries
+    )
+  ) -}}
+
 {{- end -}}
