@@ -1,5 +1,111 @@
+{{ define "title" }}MachFolio — Woodworking Machinery Specs & Comparisons{{ end }}
+{{ define "description" }}Specs, comparisons, and owner-sourced verdicts for woodworking machinery. Find the right machine at every price tier.{{ end }}
+
 {{ define "main" }}
-<h1>MachFolio</h1>
-<p>{{ .Site.Params.description }}</p>
-<p>Pipeline verified. Entry templates building.</p>
+
+{{/* ---- Fetch all entries ---- */}}
+{{- $allEntries := partial "get-entries.html" . -}}
+
+{{/* Filter to Live entries only */}}
+{{- $liveEntries := slice -}}
+{{- range $allEntries -}}
+  {{- if eq .status "Live" -}}
+    {{- $liveEntries = $liveEntries | append . -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* ---- Hero ---- */}}
+<div class="home-hero">
+  <h1 class="home-title">MachFolio</h1>
+  <p class="home-tagline">Specs, comparisons, and owner-sourced verdicts for woodworking machinery.</p>
+</div>
+
+{{/* ---- Category grid ---- */}}
+<section class="home-section">
+  <h2 class="section-header">Browse by Category</h2>
+  <div class="category-grid">
+
+    {{/* Only show categories that have at least one Live entry */}}
+    {{- $activeCategories := slice -}}
+    {{- range $liveEntries -}}
+      {{- if not (in $activeCategories .category) -}}
+        {{- $activeCategories = $activeCategories | append .category -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{/* Render category cards in defined order */}}
+    {{- $categoryOrder := slice "Band Saw" "Table Saw" "Jointer" "Planer" "Miter Saw" "Router" "Dust Collector" -}}
+    {{- range $categoryOrder -}}
+      {{- $cat := . -}}
+      {{- if in $activeCategories $cat -}}
+
+        {{- $categorySlug := "" -}}
+        {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+        {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+        {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+        {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+        {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+        {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+        {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+
+        {{/* Count entries in this category */}}
+        {{- $count := 0 -}}
+        {{- range $liveEntries -}}
+          {{- if eq .category $cat -}}
+            {{- $count = add $count 1 -}}
+          {{- end -}}
+        {{- end -}}
+
+        <a href="/{{ $categorySlug }}" class="category-card">
+          <span class="category-card-name">{{ $cat }}s</span>
+          <span class="category-card-count">{{ $count }} {{ if eq $count 1 }}entry{{ else }}entries{{ end }}</span>
+        </a>
+
+      {{- end -}}
+    {{- end -}}
+
+  </div>
+</section>
+
+{{/* ---- Recent entries ---- */}}
+{{- if $liveEntries -}}
+<section class="home-section">
+  <h2 class="section-header">Recent Entries</h2>
+
+  {{/* Sort by date_published descending, take first 6 */}}
+  {{- $sorted := sort $liveEntries "date_published" "desc" -}}
+  {{- $recent := first 6 $sorted -}}
+
+  <div class="card-grid">
+    {{- range $recent -}}
+      {{- $categorySlug := "" -}}
+      {{- if eq .category "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+      {{- if eq .category "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+      {{- if eq .category "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+      {{- if eq .category "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+      {{- if eq .category "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+      {{- if eq .category "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+      {{- if eq .category "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+
+      <a href="/{{ $categorySlug }}/{{ .machine_slug }}" class="entry-card">
+        <div class="entry-card-title">
+          {{ .machine_name }}
+          {{- $tierSlug := replace (lower .tier) " " "-" -}}
+          <span class="tier-badge tier-badge--{{ $tierSlug }}">{{ .tier }}</span>
+        </div>
+        <div class="entry-card-meta">
+          {{ .manufacturer }}
+          {{ if .current_price }} &middot; ${{ .current_price }}{{ end }}
+        </div>
+        {{ if .who_its_for }}
+        <div class="entry-card-excerpt">
+          {{ .who_its_for | truncate 120 }}
+        </div>
+        {{ end }}
+      </a>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}
+
 {{ end }}
