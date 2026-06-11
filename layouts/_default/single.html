@@ -1,7 +1,10 @@
-{{ define "title" }}{{ .Params.machine_name }} — MachFolio{{ end }}
-{{ define "description" }}{{ .Params.who_its_for | truncate 160 }}{{ end }}
+{{ define "title" }}{{ if .Params.is_comparison }}{{ .Params.machine_a.machine_name }} vs {{ .Params.machine_b.machine_name }} — MachFolio{{ else }}{{ .Params.machine_name }} — MachFolio{{ end }}{{ end }}
+{{ define "description" }}{{ if .Params.is_comparison }}Compare the {{ .Params.machine_a.machine_name }} and {{ .Params.machine_b.machine_name }} side by side — specs, price, and owner verdicts.{{ else }}{{ .Params.who_its_for | truncate 160 }}{{ end }}{{ end }}
 
 {{ define "main" }}
+{{ if .Params.is_comparison }}
+{{ partial "comparison-page.html" . }}
+{{ else }}
 
 {{/* ---- Breadcrumb ---- */}}
 <nav class="breadcrumb">
@@ -132,25 +135,37 @@
     <div class="prose">
       <ul>
         {{ if .Params.compare_1_slug }}
+        {{- $slugA := .Params.machine_slug -}}
+        {{- $slugB := .Params.compare_1_slug -}}
+        {{- $first := $slugA -}}{{- $second := $slugB -}}
+        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
         <li>
-          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_1_slug }}">
-            {{ replace .Params.compare_1_slug "-" " " | title }}
+          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
+            {{ .Params.machine_name }} vs {{ replace .Params.compare_1_slug "-" " " | title }}
           </a>
           {{ if .Params.compare_1_note }} — {{ .Params.compare_1_note }}{{ end }}
         </li>
         {{ end }}
         {{ if .Params.compare_2_slug }}
+        {{- $slugA := .Params.machine_slug -}}
+        {{- $slugB := .Params.compare_2_slug -}}
+        {{- $first := $slugA -}}{{- $second := $slugB -}}
+        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
         <li>
-          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_2_slug }}">
-            {{ replace .Params.compare_2_slug "-" " " | title }}
+          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
+            {{ .Params.machine_name }} vs {{ replace .Params.compare_2_slug "-" " " | title }}
           </a>
           {{ if .Params.compare_2_note }} — {{ .Params.compare_2_note }}{{ end }}
         </li>
         {{ end }}
         {{ if .Params.compare_3_slug }}
+        {{- $slugA := .Params.machine_slug -}}
+        {{- $slugB := .Params.compare_3_slug -}}
+        {{- $first := $slugA -}}{{- $second := $slugB -}}
+        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
         <li>
-          <a href="/{{ .Params.category_slug }}/{{ .Params.compare_3_slug }}">
-            {{ replace .Params.compare_3_slug "-" " " | title }}
+          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
+            {{ .Params.machine_name }} vs {{ replace .Params.compare_3_slug "-" " " | title }}
           </a>
           {{ if .Params.compare_3_note }} — {{ .Params.compare_3_note }}{{ end }}
         </li>
@@ -168,4 +183,5 @@
   Specs sourced from manufacturer documentation. Owner feedback reflects community reports from r/woodworking, Sawmill Creek, and Amazon verified reviews. Prices may vary by retailer and change over time.
 </p>
 
-{{ end }}
+{{ end }}{{/* end is_comparison branch */}}
+{{ end }}{{/* end main */}}

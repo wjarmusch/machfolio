@@ -35,6 +35,7 @@
       "path" $path
       "params" (dict
         "machine_name" (index . "machine_name")
+        "machine_slug" (index . "machine_slug")
         "manufacturer" (index . "manufacturer")
         "category" (index . "category")
         "category_slug" $categorySlug
@@ -115,4 +116,79 @@
     )
   ) -}}
 
+{{- end -}}
+
+{{/* ---- Generate comparison pages ---- */}}
+
+{{/* Build a lookup map of Live entries by slug */}}
+{{- $liveBySlug := dict -}}
+{{- range $allEntries -}}
+  {{- if eq .status "Live" -}}
+    {{- $liveBySlug = merge $liveBySlug (dict .machine_slug .) -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Collect unique comparison pairs */}}
+{{- $seenPairs := slice -}}
+
+{{- range $allEntries -}}
+  {{- if eq .status "Live" -}}
+    {{- $slugA := .machine_slug -}}
+    {{- $entryA := . -}}
+
+    {{/* Gather this entry's three possible competitor slugs */}}
+    {{- $competitors := slice .compare_1_slug .compare_2_slug .compare_3_slug -}}
+
+    {{- range $competitors -}}
+      {{- $slugB := . -}}
+
+      {{/* Only proceed if competitor slug is non-empty AND is a Live entry */}}
+      {{- if and (ne $slugB "") (isset $liveBySlug $slugB) -}}
+
+        {{/* Sort the two slugs alphabetically for canonical pair key */}}
+        {{- $first := $slugA -}}
+        {{- $second := $slugB -}}
+        {{- if gt $slugA $slugB -}}
+          {{- $first = $slugB -}}
+          {{- $second = $slugA -}}
+        {{- end -}}
+
+        {{- $pairKey := printf "%s-vs-%s" $first $second -}}
+
+        {{/* Only generate if this pair has not been seen */}}
+        {{- if not (in $seenPairs $pairKey) -}}
+          {{- $seenPairs = $seenPairs | append $pairKey -}}
+
+          {{- $entryFirst := index $liveBySlug $first -}}
+          {{- $entrySecond := index $liveBySlug $second -}}
+
+          {{/* Determine category slug from the first entry */}}
+          {{- $cat := $entryFirst.category -}}
+          {{- $categorySlug := "" -}}
+          {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
+          {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
+          {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
+          {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
+          {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
+          {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
+          {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+
+          {{- $path := printf "compare/%s/%s" $categorySlug $pairKey -}}
+
+          {{- $.AddPage (dict
+            "kind" "page"
+            "path" $path
+            "params" (dict
+              "is_comparison" true
+              "category_slug" $categorySlug
+              "category_display" $cat
+              "machine_a" $entryFirst
+              "machine_b" $entrySecond
+            )
+          ) -}}
+
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
 {{- end -}}

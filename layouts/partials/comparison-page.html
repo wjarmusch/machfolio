@@ -1,0 +1,119 @@
+{{- $a := .Params.machine_a -}}
+{{- $b := .Params.machine_b -}}
+{{- $categorySlug := .Params.category_slug -}}
+{{- $categoryDisplay := .Params.category_display -}}
+
+{{/* ---- Breadcrumb ---- */}}
+<nav class="breadcrumb">
+  <a href="/">MachFolio</a>
+  <span>/</span>
+  <a href="/{{ $categorySlug }}">{{ $categoryDisplay }}s</a>
+  <span>/</span>
+  {{ $a.machine_name }} vs {{ $b.machine_name }}
+</nav>
+
+{{/* ---- Header ---- */}}
+<div class="compare-header">
+  <h1 class="compare-title">{{ $a.machine_name }} vs {{ $b.machine_name }}</h1>
+</div>
+
+{{/* ---- Spec comparison table ---- */}}
+<table class="compare-table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>{{ $a.machine_name }}</th>
+      <th>{{ $b.machine_name }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="compare-label">Price</td>
+      <td>{{ if $a.current_price }}${{ $a.current_price }}{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.current_price }}${{ $b.current_price }}{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Tier</td>
+      <td>
+        {{- $tierSlugA := replace (lower $a.tier) " " "-" -}}
+        <span class="tier-badge tier-badge--{{ $tierSlugA }}">{{ $a.tier }}</span>
+      </td>
+      <td>
+        {{- $tierSlugB := replace (lower $b.tier) " " "-" -}}
+        <span class="tier-badge tier-badge--{{ $tierSlugB }}">{{ $b.tier }}</span>
+      </td>
+    </tr>
+    <tr>
+      <td class="compare-label">Motor HP</td>
+      <td>{{ if $a.motor_hp }}{{ $a.motor_hp }} HP{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.motor_hp }}{{ $b.motor_hp }} HP{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Cut Height</td>
+      <td>{{ if $a.cut_capacity_height }}{{ $a.cut_capacity_height }}"{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.cut_capacity_height }}{{ $b.cut_capacity_height }}"{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Cut Width</td>
+      <td>{{ if $a.cut_capacity_width }}{{ $a.cut_capacity_width }}"{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.cut_capacity_width }}{{ $b.cut_capacity_width }}"{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Table</td>
+      <td>{{ if $a.table_dimensions }}{{ $a.table_dimensions }}{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.table_dimensions }}{{ $b.table_dimensions }}{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Weight</td>
+      <td>{{ if $a.weight_lbs }}{{ $a.weight_lbs }} lbs{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.weight_lbs }}{{ $b.weight_lbs }} lbs{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Dust Port</td>
+      <td>{{ if $a.dust_port_diameter }}{{ $a.dust_port_diameter }}"{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.dust_port_diameter }}{{ $b.dust_port_diameter }}"{{ else }}&mdash;{{ end }}</td>
+    </tr>
+    <tr>
+      <td class="compare-label">Voltage</td>
+      <td>{{ if $a.voltage }}{{ $a.voltage }}{{ else }}&mdash;{{ end }}</td>
+      <td>{{ if $b.voltage }}{{ $b.voltage }}{{ else }}&mdash;{{ end }}</td>
+    </tr>
+  </tbody>
+</table>
+
+{{/* ---- Verdict row ---- */}}
+<div class="compare-verdict">
+  <div class="compare-verdict-block">
+    <h2 class="section-header">{{ $a.machine_name }}</h2>
+    {{ if $a.who_its_for }}
+    <p class="prose">{{ $a.who_its_for | truncate 220 }}</p>
+    {{ end }}
+    {{ if $a.affiliate_link_1 }}
+    <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+      Buy at {{ $a.affiliate_retailer_1 }}
+    </a>
+    {{ end }}
+  </div>
+  <div class="compare-verdict-block">
+    <h2 class="section-header">{{ $b.machine_name }}</h2>
+    {{ if $b.who_its_for }}
+    <p class="prose">{{ $b.who_its_for | truncate 220 }}</p>
+    {{ end }}
+    {{ if $b.affiliate_link_1 }}
+    <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+      Buy at {{ $b.affiliate_retailer_1 }}
+    </a>
+    {{ end }}
+  </div>
+</div>
+
+{{/* ---- Full entry links ---- */}}
+<div class="compare-links">
+  <a href="/{{ $categorySlug }}/{{ $a.machine_slug }}">Full {{ $a.machine_name }} entry</a>
+  <a href="/{{ $categorySlug }}/{{ $b.machine_slug }}">Full {{ $b.machine_name }} entry</a>
+</div>
+
+{{/* ---- Sourcing note ---- */}}
+<p class="sourcing-note">
+  Specs sourced from manufacturer documentation. Owner feedback reflects community reports from r/woodworking, Sawmill Creek, and Amazon verified reviews. Prices may vary by retailer and change over time.
+</p>

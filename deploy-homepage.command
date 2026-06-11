@@ -20,7 +20,7 @@ echo "BUILD PASSED — 0 errors."
 echo ""
 echo "[2/3] Committing changes..."
 git add .
-git commit -m "add homepage template"
+git commit -m "add comparison page template"
 echo ""
 echo "[3/3] Pushing to GitHub..."
 git push
