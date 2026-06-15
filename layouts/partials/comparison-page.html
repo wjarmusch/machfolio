@@ -28,9 +28,21 @@
   </thead>
   <tbody>
     <tr>
-      <td class="compare-label">Price</td>
-      <td>{{ if $a.current_price }}${{ $a.current_price }}{{ else }}&mdash;{{ end }}</td>
-      <td>{{ if $b.current_price }}${{ $b.current_price }}{{ else }}&mdash;{{ end }}</td>
+      <td class="compare-label">From</td>
+      <td>
+        {{- $pricesA := slice -}}
+        {{- if $a.affiliate_price_1 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_1 | float) -}}{{- end -}}
+        {{- if $a.affiliate_price_2 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_2 | float) -}}{{- end -}}
+        {{- if $a.affiliate_price_3 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_3 | float) -}}{{- end -}}
+        {{- if $pricesA }}${{ index (sort $pricesA) 0 }}{{ else }}&mdash;{{ end }}
+      </td>
+      <td>
+        {{- $pricesB := slice -}}
+        {{- if $b.affiliate_price_1 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_1 | float) -}}{{- end -}}
+        {{- if $b.affiliate_price_2 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_2 | float) -}}{{- end -}}
+        {{- if $b.affiliate_price_3 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_3 | float) -}}{{- end -}}
+        {{- if $pricesB }}${{ index (sort $pricesB) 0 }}{{ else }}&mdash;{{ end }}
+      </td>
     </tr>
     <tr>
       <td class="compare-label">Tier</td>
@@ -90,7 +102,8 @@
     {{ end }}
     {{ if $a.affiliate_link_1 }}
     <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
-      Buy at {{ $a.affiliate_retailer_1 }}
+      <span class="affiliate-btn-retailer">Buy at {{ $a.affiliate_retailer_1 }}</span>
+      {{ if $a.affiliate_price_1 }}<span class="affiliate-btn-price">${{ $a.affiliate_price_1 }}</span>{{ end }}
     </a>
     {{ end }}
   </div>
@@ -101,7 +114,8 @@
     {{ end }}
     {{ if $b.affiliate_link_1 }}
     <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
-      Buy at {{ $b.affiliate_retailer_1 }}
+      <span class="affiliate-btn-retailer">Buy at {{ $b.affiliate_retailer_1 }}</span>
+      {{ if $b.affiliate_price_1 }}<span class="affiliate-btn-price">${{ $b.affiliate_price_1 }}</span>{{ end }}
     </a>
     {{ end }}
   </div>

@@ -25,7 +25,11 @@
   <p class="entry-meta">
     <span>{{ .Params.manufacturer }}</span>
     <span>{{ .Params.category }}</span>
-    {{ if .Params.current_price }}<span>${{ .Params.current_price }}</span>{{ end }}
+    {{- $prices := slice -}}
+    {{- if .Params.affiliate_price_1 }}{{- $prices = $prices | append (.Params.affiliate_price_1 | float) -}}{{- end -}}
+    {{- if .Params.affiliate_price_2 }}{{- $prices = $prices | append (.Params.affiliate_price_2 | float) -}}{{- end -}}
+    {{- if .Params.affiliate_price_3 }}{{- $prices = $prices | append (.Params.affiliate_price_3 | float) -}}{{- end -}}
+    {{- if $prices -}}<span>from ${{ index (sort $prices) 0 }}</span>{{- end -}}
     {{ if .Params.release_year }}<span>{{ .Params.release_year }}</span>{{ end }}
   </p>
 </div>
@@ -70,17 +74,20 @@
     {{/* Affiliate buttons */}}
     {{ if .Params.affiliate_link_1 }}
     <a href="{{ .Params.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
-      Buy at {{ .Params.affiliate_retailer_1 }}
+      <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_1 }}</span>
+      {{ if .Params.affiliate_price_1 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_1 }}</span>{{ end }}
     </a>
     {{ end }}
     {{ if .Params.affiliate_link_2 }}
     <a href="{{ .Params.affiliate_link_2 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
-      Buy at {{ .Params.affiliate_retailer_2 }}
+      <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_2 }}</span>
+      {{ if .Params.affiliate_price_2 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_2 }}</span>{{ end }}
     </a>
     {{ end }}
     {{ if .Params.affiliate_link_3 }}
     <a href="{{ .Params.affiliate_link_3 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
-      Buy at {{ .Params.affiliate_retailer_3 }}
+      <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_3 }}</span>
+      {{ if .Params.affiliate_price_3 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_3 }}</span>{{ end }}
     </a>
     {{ end }}
 

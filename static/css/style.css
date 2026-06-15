@@ -139,7 +139,9 @@ body {
 
 /* Affiliate buttons */
 .affiliate-btn {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 12px 16px;
   margin-bottom: 8px;
@@ -147,9 +149,6 @@ body {
   color: #ffffff;
   font-size: 14px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  text-align: center;
   text-decoration: none;
   border-radius: 4px;
   transition: opacity 0.15s ease;
@@ -157,6 +156,16 @@ body {
 
 .affiliate-btn:hover {
   opacity: 0.85;
+}
+
+.affiliate-btn-retailer {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.affiliate-btn-price {
+  font-weight: 400;
+  opacity: 0.9;
 }
 
 /* Entry layout */

@@ -95,7 +95,11 @@
         </div>
         <div class="entry-card-meta">
           {{ .manufacturer }}
-          {{ if .current_price }} &middot; ${{ .current_price }}{{ end }}
+          {{- $cardPrices := slice -}}
+          {{- if .affiliate_price_1 }}{{- $cardPrices = $cardPrices | append (.affiliate_price_1 | float) -}}{{- end -}}
+          {{- if .affiliate_price_2 }}{{- $cardPrices = $cardPrices | append (.affiliate_price_2 | float) -}}{{- end -}}
+          {{- if .affiliate_price_3 }}{{- $cardPrices = $cardPrices | append (.affiliate_price_3 | float) -}}{{- end -}}
+          {{- if $cardPrices }} &middot; from ${{ index (sort $cardPrices) 0 }}{{- end -}}
         </div>
         {{ if .who_its_for }}
         <div class="entry-card-excerpt">

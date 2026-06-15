@@ -39,7 +39,12 @@
   {{- $machineSlug := index . "machine_slug" -}}
   {{- $tier := index . "tier" -}}
   {{- $manufacturer := index . "manufacturer" -}}
-  {{- $price := index . "current_price" -}}
+  {{- $cardPrices := slice -}}
+  {{- if (index . "affiliate_price_1") }}{{- $cardPrices = $cardPrices | append ((index . "affiliate_price_1") | float) -}}{{- end -}}
+  {{- if (index . "affiliate_price_2") }}{{- $cardPrices = $cardPrices | append ((index . "affiliate_price_2") | float) -}}{{- end -}}
+  {{- if (index . "affiliate_price_3") }}{{- $cardPrices = $cardPrices | append ((index . "affiliate_price_3") | float) -}}{{- end -}}
+  {{- $price := "" -}}
+  {{- if $cardPrices }}{{- $price = index (sort $cardPrices) 0 -}}{{- end -}}
   {{- $whoItsFor := index . "who_its_for" -}}
   {{- $category := index . "category" -}}
   {{- $categorySlug := index . "category_slug" -}}
@@ -60,7 +65,7 @@
     </div>
     <div class="entry-card-meta">
       {{ $manufacturer }}
-      {{ if $price }} &middot; ${{ $price }}{{ end }}
+      {{ if $price }} &middot; from ${{ $price }}{{ end }}
     </div>
     {{ if $whoItsFor }}
     <div class="entry-card-excerpt">

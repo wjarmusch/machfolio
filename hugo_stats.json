@@ -30,6 +30,8 @@
     ],
     "classes": [
       "affiliate-btn",
+      "affiliate-btn-price",
+      "affiliate-btn-retailer",
       "breadcrumb",
       "card-grid",
       "category-card",

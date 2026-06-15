@@ -20,7 +20,7 @@ echo "BUILD PASSED — 0 errors."
 echo ""
 echo "[2/3] Committing changes..."
 git add .
-git commit -m "add GA4 tracking and outbound click events"
+git commit -m "schema migration: per-retailer pricing, remove current_price"
 echo ""
 echo "[3/3] Pushing to GitHub..."
 git push
