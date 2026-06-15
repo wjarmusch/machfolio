@@ -20,7 +20,7 @@ echo "BUILD PASSED — 0 errors."
 echo ""
 echo "[2/3] Committing changes..."
 git add .
-git commit -m "update Impact site verification meta tag value (3)"
+git commit -m "add Impact universal tracking tag to head"
 echo ""
 echo "[3/3] Pushing to GitHub..."
 git push
