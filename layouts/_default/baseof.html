@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <!-- Impact Universal Tracking Tag -->
   <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7408213-ed77-406f-8c71-271fe5c5634c1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
+  {{ partial "ga4.html" . }}
 </head>
 <body>
   <header class="site-header">
@@ -36,5 +37,22 @@
       <p>&copy; {{ now.Year }} MachFolio</p>
     </div>
   </footer>
+
+  <!-- Outbound link tracking for GA4 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href^="http"]').forEach(function(link) {
+        if (link.hostname !== window.location.hostname) {
+          link.addEventListener('click', function() {
+            gtag('event', 'outbound_click', {
+              'event_category': 'outbound',
+              'event_label': link.href,
+              'transport_type': 'beacon'
+            });
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
