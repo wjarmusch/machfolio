@@ -6,7 +6,8 @@
   <meta name="impact-site-verification" value="f132e01f-a750-45fd-9347-5681428a4783">
   <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
-  <link rel="stylesheet" href="/css/style.css">
+  {{ $css := resources.Get "css/style.css" | fingerprint "sha256" }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <!-- Impact Universal Tracking Tag -->
   <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7408213-ed77-406f-8c71-271fe5c5634c1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
   {{ partial "ga4.html" . }}
