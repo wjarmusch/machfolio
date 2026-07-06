@@ -1,4 +1,4 @@
-{{ define "title" }}{{ if .Params.is_comparison }}{{ .Params.machine_a.machine_name }} vs {{ .Params.machine_b.machine_name }} — MachFolio{{ else }}{{ .Params.machine_name }} — MachFolio{{ end }}{{ end }}
+{{ define "title" }}{{ if .Params.is_comparison }}{{ .Params.machine_a.machine_name }} vs {{ .Params.machine_b.machine_name }}: Specs & Price | MachFolio{{ else }}{{ .Params.machine_name }} Specs & Price | MachFolio{{ end }}{{ end }}
 {{ define "description" }}{{ if .Params.is_comparison }}Compare the {{ .Params.machine_a.machine_name }} and {{ .Params.machine_b.machine_name }} side by side — specs, price, and owner verdicts.{{ else }}{{ .Params.who_its_for | truncate 160 }}{{ end }}{{ end }}
 
 {{ define "main" }}

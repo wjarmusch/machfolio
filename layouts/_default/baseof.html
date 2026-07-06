@@ -6,6 +6,7 @@
   <meta name="impact-site-verification" value="f132e01f-a750-45fd-9347-5681428a4783">
   <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
+  <link rel="canonical" href="{{ .Permalink }}">
   {{ $css := resources.Get "css/style.css" | fingerprint "sha256" }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <!-- Impact Universal Tracking Tag -->
