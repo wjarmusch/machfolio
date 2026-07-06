@@ -98,7 +98,7 @@
   <div class="compare-verdict-block">
     <h2 class="section-header">{{ $a.machine_name }}</h2>
     {{ if $a.who_its_for }}
-    <p class="prose">{{ $a.who_its_for | truncate 220 }}</p>
+    <p class="prose">{{ $a.who_its_for | truncate 360 }}</p>
     {{ end }}
     {{ if $a.affiliate_link_1 }}
     <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
@@ -110,7 +110,7 @@
   <div class="compare-verdict-block">
     <h2 class="section-header">{{ $b.machine_name }}</h2>
     {{ if $b.who_its_for }}
-    <p class="prose">{{ $b.who_its_for | truncate 220 }}</p>
+    <p class="prose">{{ $b.who_its_for | truncate 360 }}</p>
     {{ end }}
     {{ if $b.affiliate_link_1 }}
     <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
@@ -123,8 +123,8 @@
 
 {{/* ---- Full entry links ---- */}}
 <div class="compare-links">
-  <a href="/{{ $categorySlug }}/{{ $a.machine_slug }}">Full {{ $a.machine_name }} entry</a>
-  <a href="/{{ $categorySlug }}/{{ $b.machine_slug }}">Full {{ $b.machine_name }} entry</a>
+  <a href="/{{ $categorySlug }}/{{ $a.machine_slug }}" class="entry-link-btn">View full entry <span aria-hidden="true">&rarr;</span></a>
+  <a href="/{{ $categorySlug }}/{{ $b.machine_slug }}" class="entry-link-btn">View full entry <span aria-hidden="true">&rarr;</span></a>
 </div>
 
 {{/* ---- Sourcing note ---- */}}

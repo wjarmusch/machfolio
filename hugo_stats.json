@@ -32,6 +32,7 @@
       "affiliate-btn",
       "affiliate-btn-price",
       "affiliate-btn-retailer",
+      "alt-list",
       "breadcrumb",
       "card-grid",
       "category-card",
@@ -57,6 +58,7 @@
       "entry-col-right",
       "entry-header",
       "entry-layout",
+      "entry-link-btn",
       "entry-meta",
       "entry-title",
       "home-hero",
@@ -75,8 +77,10 @@
       "spec-table",
       "tier-badge",
       "tier-badge--hobbyist",
+      "tier-badge--professional",
       "tier-badge--semi-pro",
-      "tier-badge--serious-hobbyist"
+      "tier-badge--serious-hobbyist",
+      "tier-badge--weekend-warrior"
     ],
     "ids": null
   }

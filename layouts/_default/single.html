@@ -139,46 +139,19 @@
     {{/* Alternatives */}}
     {{ if or .Params.compare_1_slug .Params.compare_2_slug .Params.compare_3_slug }}
     <h2 class="section-header">Alternatives to Consider</h2>
-    <div class="prose">
-      <ul>
-        {{ if .Params.compare_1_slug }}
-        {{- $slugA := .Params.machine_slug -}}
-        {{- $slugB := .Params.compare_1_slug -}}
-        {{- $first := $slugA -}}{{- $second := $slugB -}}
-        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
-        <li>
-          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
-            {{ .Params.machine_name }} vs {{ replace .Params.compare_1_slug "-" " " | title }}
-          </a>
-          {{ if .Params.compare_1_note }} — {{ .Params.compare_1_note }}{{ end }}
-        </li>
-        {{ end }}
-        {{ if .Params.compare_2_slug }}
-        {{- $slugA := .Params.machine_slug -}}
-        {{- $slugB := .Params.compare_2_slug -}}
-        {{- $first := $slugA -}}{{- $second := $slugB -}}
-        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
-        <li>
-          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
-            {{ .Params.machine_name }} vs {{ replace .Params.compare_2_slug "-" " " | title }}
-          </a>
-          {{ if .Params.compare_2_note }} — {{ .Params.compare_2_note }}{{ end }}
-        </li>
-        {{ end }}
-        {{ if .Params.compare_3_slug }}
-        {{- $slugA := .Params.machine_slug -}}
-        {{- $slugB := .Params.compare_3_slug -}}
-        {{- $first := $slugA -}}{{- $second := $slugB -}}
-        {{- if gt $slugA $slugB -}}{{- $first = $slugB -}}{{- $second = $slugA -}}{{- end -}}
-        <li>
-          <a href="/compare/{{ .Params.category_slug }}/{{ $first }}-vs-{{ $second }}">
-            {{ .Params.machine_name }} vs {{ replace .Params.compare_3_slug "-" " " | title }}
-          </a>
-          {{ if .Params.compare_3_note }} — {{ .Params.compare_3_note }}{{ end }}
-        </li>
-        {{ end }}
-      </ul>
-    </div>
+    {{- $self := .Params.machine_slug -}}
+    {{- $cat := .Params.category_slug -}}
+    {{- $compares := slice -}}
+    {{- if .Params.compare_1_slug }}{{ $compares = $compares | append .Params.compare_1_slug }}{{ end -}}
+    {{- if .Params.compare_2_slug }}{{ $compares = $compares | append .Params.compare_2_slug }}{{ end -}}
+    {{- if .Params.compare_3_slug }}{{ $compares = $compares | append .Params.compare_3_slug }}{{ end -}}
+    <ul class="alt-list">
+      {{ range $compares }}
+      {{- $first := $self -}}{{- $second := . -}}
+      {{- if gt $self . -}}{{- $first = . -}}{{- $second = $self -}}{{- end -}}
+      <li>Compare this product with <a href="/compare/{{ $cat }}/{{ $first }}-vs-{{ $second }}">{{ replace . "-" " " | title }}</a></li>
+      {{ end }}
+    </ul>
     {{ end }}
 
   </div>{{/* end right column */}}
