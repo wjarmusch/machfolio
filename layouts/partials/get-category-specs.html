@@ -1,0 +1,4 @@
+{{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
+{{- $csv := resources.GetRemote $url -}}
+{{- $specs := $csv | transform.Unmarshal -}}
+{{- return $specs -}}

@@ -15,6 +15,26 @@
   {{- end -}}
 {{- end -}}
 
+{{/* ---- Fetch category_specs and build a lookup keyed by machine_slug ---- */}}
+{{/* transform.Unmarshal on CSV returns row arrays (not header-keyed maps), so
+     we zip headers into maps the same way the Entries loop above does. */}}
+{{- $specsUrl := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
+{{- $specsCsv := resources.GetRemote $specsUrl -}}
+{{- $specsRows := $specsCsv | transform.Unmarshal -}}
+{{- $specsHeaders := index $specsRows 0 -}}
+{{- $specsBySlug := dict -}}
+{{- range $si, $srow := $specsRows -}}
+  {{- if gt $si 0 -}}
+    {{- $spec := dict -}}
+    {{- range $sj, $sheader := $specsHeaders -}}
+      {{- $spec = merge $spec (dict $sheader (index $srow $sj)) -}}
+    {{- end -}}
+    {{- if index $spec "machine_slug" -}}
+      {{- $specsBySlug = merge $specsBySlug (dict (index $spec "machine_slug") $spec) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{/* ---- Generate individual entry pages ---- */}}
 {{- range $allEntries -}}
   {{- if eq (index . "status") "Live" -}}
@@ -29,6 +49,11 @@
     {{- if eq (index . "category") "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
 
     {{- $path := printf "%s/%s" $categorySlug (index . "machine_slug") -}}
+
+    {{- $catSpec := dict -}}
+    {{- if isset $specsBySlug (index . "machine_slug") -}}
+      {{- $catSpec = index $specsBySlug (index . "machine_slug") -}}
+    {{- end -}}
 
     {{- $.AddPage (dict
       "kind" "page"
@@ -48,6 +73,15 @@
         "table_dimensions" (index . "table_dimensions")
         "weight_lbs" (index . "weight_lbs")
         "dust_port_diameter" (index . "dust_port_diameter")
+        "saw_class" (index $catSpec "saw_class")
+        "rip_capacity_right" (index $catSpec "rip_capacity_right")
+        "cat_blade_size" (index $catSpec "blade_size")
+        "arbor_size" (index $catSpec "arbor_size")
+        "max_cut_depth_90" (index $catSpec "max_cut_depth_90")
+        "max_cut_depth_45" (index $catSpec "max_cut_depth_45")
+        "blade_tilt" (index $catSpec "blade_tilt")
+        "fence_type" (index $catSpec "fence_type")
+        "drive_type" (index $catSpec "drive_type")
         "tier" (index . "tier")
         "who_its_for" (index . "who_its_for")
         "owner_praise" (index . "owner_praise")

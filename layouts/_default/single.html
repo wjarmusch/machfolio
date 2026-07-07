@@ -71,6 +71,33 @@
       {{ if .Params.dust_port_diameter }}
       <tr><td>Dust Port</td><td>{{ .Params.dust_port_diameter }}"</td></tr>
       {{ end }}
+      {{ if .Params.saw_class }}
+      <tr><td>Saw Class</td><td>{{ .Params.saw_class }}</td></tr>
+      {{ end }}
+      {{ if .Params.rip_capacity_right }}
+      <tr><td>Rip Capacity</td><td>{{ .Params.rip_capacity_right }}" right of blade</td></tr>
+      {{ end }}
+      {{ if .Params.cat_blade_size }}
+      <tr><td>Blade Size</td><td>{{ .Params.cat_blade_size }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_cut_depth_90 }}
+      <tr><td>Max Cut (90°)</td><td>{{ .Params.max_cut_depth_90 }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_cut_depth_45 }}
+      <tr><td>Max Cut (45°)</td><td>{{ .Params.max_cut_depth_45 }}"</td></tr>
+      {{ end }}
+      {{ if .Params.blade_tilt }}
+      <tr><td>Blade Tilt</td><td>{{ .Params.blade_tilt }}</td></tr>
+      {{ end }}
+      {{ if .Params.fence_type }}
+      <tr><td>Fence</td><td>{{ .Params.fence_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.drive_type }}
+      <tr><td>Drive</td><td>{{ .Params.drive_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.arbor_size }}
+      <tr><td>Arbor</td><td>{{ .Params.arbor_size }}"</td></tr>
+      {{ end }}
     </table>
 
     {{/* Affiliate buttons */}}
