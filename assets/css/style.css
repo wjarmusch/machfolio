@@ -548,3 +548,75 @@ body {
 .alt-list a:hover {
   text-decoration: underline;
 }
+
+/* Guides */
+.guide {
+  max-width: 760px;
+}
+
+.guide-title {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.guide-subtitle {
+  font-size: 17px;
+  color: var(--color-text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.guide-body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.guide-body h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  color: var(--color-text-primary);
+}
+
+.guide-body h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: var(--color-text-primary);
+}
+
+.guide-body p {
+  margin-bottom: 16px;
+}
+
+.guide-body ul, .guide-body ol {
+  margin-bottom: 16px;
+  padding-left: 22px;
+}
+
+.guide-body li {
+  margin-bottom: 6px;
+}
+
+.guide-body a {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* Guide recommendation callout — use with a blockquote or a div class in Markdown */
+.guide-body blockquote {
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-surface);
+  padding: 16px 20px;
+  margin: 24px 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.guide-body blockquote p:last-child {
+  margin-bottom: 0;
+}

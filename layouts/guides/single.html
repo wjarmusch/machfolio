@@ -1,0 +1,25 @@
+{{ define "title" }}{{ .Title }} | MachFolio{{ end }}
+{{ define "description" }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | truncate 160 }}{{ end }}{{ end }}
+
+{{ define "main" }}
+<nav class="breadcrumb">
+  <a href="/">MachFolio</a>
+  <span>/</span>
+  <a href="/guides">Guides</a>
+  <span>/</span>
+  {{ .Title }}
+</nav>
+
+<article class="guide">
+  <h1 class="guide-title">{{ .Title }}</h1>
+  {{ with .Params.subtitle }}<p class="guide-subtitle">{{ . }}</p>{{ end }}
+
+  <div class="guide-body prose">
+    {{ .Content }}
+  </div>
+</article>
+
+<p class="sourcing-note">
+  Specs referenced in this guide are sourced from manufacturer documentation. Machine recommendations link to full MachFolio entries with owner-sourced feedback and current pricing.
+</p>
+{{ end }}

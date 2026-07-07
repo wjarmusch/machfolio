@@ -1,0 +1,33 @@
+{{ define "title" }}Woodworking Buying Guides | MachFolio{{ end }}
+{{ define "description" }}Plain-language buying guides for woodworking machinery. Understand the types, price tiers, and specs that matter before you buy.{{ end }}
+
+{{ define "main" }}
+<nav class="breadcrumb">
+  <a href="/">MachFolio</a>
+  <span>/</span>
+  Guides
+</nav>
+
+<div class="category-header">
+  <h1 class="category-title">Buying Guides</h1>
+  <p class="category-meta">Understand the types, price tiers, and specs that matter before you buy.</p>
+</div>
+
+{{ $guides := where .Site.RegularPages "Section" "guides" }}
+{{ if $guides }}
+<div class="card-grid">
+  {{ range $guides }}
+  <a href="{{ .RelPermalink }}" class="entry-card">
+    <div class="entry-card-title">{{ .Title }}</div>
+    {{ with .Params.subtitle }}
+    <div class="entry-card-excerpt">{{ . }}</div>
+    {{ else }}
+    <div class="entry-card-excerpt">{{ .Summary | truncate 120 }}</div>
+    {{ end }}
+  </a>
+  {{ end }}
+</div>
+{{ else }}
+<p class="no-entries">Guides coming soon.</p>
+{{ end }}
+{{ end }}
