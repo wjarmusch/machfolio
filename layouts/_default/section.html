@@ -33,6 +33,17 @@
 
 {{/* ---- Card grid ---- */}}
 {{ if $orderedEntries }}
+<div class="tier-legend">
+  <span class="tier-legend-intro">Machines are placed in one of five tiers by price, build quality, and how owners use them:</span>
+  <span class="tier-legend-items">
+    <span class="tier-legend-item"><span class="tier-badge tier-badge--weekend-warrior">Weekend Warrior</span> occasional use</span>
+    <span class="tier-legend-item"><span class="tier-badge tier-badge--hobbyist">Hobbyist</span> regular home shop</span>
+    <span class="tier-legend-item"><span class="tier-badge tier-badge--serious-hobbyist">Serious Hobbyist</span> frequent, dedicated shop</span>
+    <span class="tier-legend-item"><span class="tier-badge tier-badge--semi-pro">Semi-Pro</span> near-daily use</span>
+    <span class="tier-legend-item"><span class="tier-badge tier-badge--professional">Professional</span> industrial use</span>
+  </span>
+  <a class="tier-legend-link" href="/guides/guide-how-tiers-work">Read how we assign tiers</a>
+</div>
 <div class="filter-bar">
   <div class="filter-group">
     <label for="tier-filter">Tier</label>

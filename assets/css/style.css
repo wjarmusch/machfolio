@@ -677,3 +677,53 @@ body {
     flex-basis: 100%;
   }
 }
+
+/* Tier legend */
+.tier-legend {
+  margin: 20px 0 8px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.tier-legend-intro {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.tier-legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  align-items: center;
+}
+
+.tier-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+/* The badge inside the legend keeps its normal styling but no left margin */
+.tier-legend .tier-badge {
+  margin-left: 0;
+}
+
+.tier-legend-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .tier-legend-items {
+    gap: 10px 14px;
+  }
+}
