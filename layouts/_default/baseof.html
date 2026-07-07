@@ -9,6 +9,10 @@
   <link rel="canonical" href="{{ .Permalink }}">
   {{ $css := resources.Get "css/style.css" | fingerprint "sha256" }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <!-- Impact Universal Tracking Tag -->
   <script type="text/javascript">(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7408213-ed77-406f-8c71-271fe5c5634c1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');</script>
   {{ partial "ga4.html" . }}
