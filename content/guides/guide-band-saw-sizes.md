@@ -1,6 +1,6 @@
 ---
 title: "Band Saw Sizes: How to Pick the Right One"
-subtitle: "What the size number means, and how to figure out which one fits the type work you want to do."
+subtitle: "What the size number means, and how to figure out which one fits the type of work you want to do."
 description: "A quick guide to band saw sizes. Understand throat capacity, resaw height, and benchtop vs floor-standing before you buy."
 draft: false
 ---
