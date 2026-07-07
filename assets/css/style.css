@@ -620,3 +620,60 @@ body {
 .guide-body blockquote p:last-child {
   margin-bottom: 0;
 }
+
+/* Category filter bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 24px 0;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-group label {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.filter-group select {
+  font-size: 14px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.filter-count {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  align-self: center;
+}
+
+@media (max-width: 768px) {
+  .filter-group select {
+    min-width: 0;
+    width: 100%;
+  }
+  .filter-group {
+    flex: 1 1 45%;
+  }
+  .filter-count {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}

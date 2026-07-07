@@ -33,6 +33,46 @@
 
 {{/* ---- Card grid ---- */}}
 {{ if $orderedEntries }}
+<div class="filter-bar">
+  <div class="filter-group">
+    <label for="tier-filter">Tier</label>
+    <select id="tier-filter">
+      <option value="all">All tiers</option>
+      <option value="Weekend Warrior">Weekend Warrior</option>
+      <option value="Hobbyist">Hobbyist</option>
+      <option value="Serious Hobbyist">Serious Hobbyist</option>
+      <option value="Semi-Pro">Semi-Pro</option>
+      <option value="Professional">Professional</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="brand-filter">Brand</label>
+    <select id="brand-filter">
+      <option value="all">All brands</option>
+      {{- $brands := slice -}}
+      {{- range .Params.entries -}}
+        {{- if and (eq .status "Live") (not (in $brands .manufacturer)) -}}
+          {{- $brands = $brands | append .manufacturer -}}
+        {{- end -}}
+      {{- end -}}
+      {{- range (sort $brands) -}}
+      <option value="{{ . }}">{{ . }}</option>
+      {{- end -}}
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="sort-order">Sort</label>
+    <select id="sort-order">
+      <option value="default">Default</option>
+      <option value="price-asc">Price: low to high</option>
+      <option value="price-desc">Price: high to low</option>
+    </select>
+  </div>
+
+  <div class="filter-count" id="filter-count"></div>
+</div>
 <div class="card-grid">
   {{ range $orderedEntries }}
   {{- $machineName := index . "machine_name" -}}
@@ -57,7 +97,10 @@
     {{- if eq $category "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
     {{- if eq $category "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
   {{- end -}}
-  <a href="/{{ $categorySlug }}/{{ $machineSlug }}" class="entry-card">
+  <a href="/{{ $categorySlug }}/{{ $machineSlug }}" class="entry-card"
+     data-tier="{{ $tier }}"
+     data-brand="{{ $manufacturer }}"
+     data-price="{{ if $price }}{{ $price }}{{ else }}0{{ end }}">
     <div class="entry-card-title">
       {{ $machineName }}
       {{- $tierSlug := replace (lower $tier) " " "-" -}}
@@ -78,5 +121,61 @@
 {{ else }}
 <p class="no-entries">No entries in this category yet.</p>
 {{ end }}
+
+<script>
+(function() {
+  const tierFilter = document.getElementById('tier-filter');
+  const brandFilter = document.getElementById('brand-filter');
+  const sortOrder = document.getElementById('sort-order');
+  const grid = document.querySelector('.card-grid');
+  const countEl = document.getElementById('filter-count');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.entry-card'));
+  const originalOrder = cards.slice();
+
+  function apply() {
+    const tier = tierFilter.value;
+    const brand = brandFilter.value;
+    const sort = sortOrder.value;
+
+    // Filter
+    let visible = originalOrder.filter(function(card) {
+      const tierOk = (tier === 'all') || (card.dataset.tier === tier);
+      const brandOk = (brand === 'all') || (card.dataset.brand === brand);
+      return tierOk && brandOk;
+    });
+
+    // Sort
+    if (sort === 'price-asc' || sort === 'price-desc') {
+      visible = visible.slice().sort(function(a, b) {
+        const pa = parseFloat(a.dataset.price) || 0;
+        const pb = parseFloat(b.dataset.price) || 0;
+        // Push zero-price (unknown) cards to the end regardless of direction
+        if (pa === 0 && pb === 0) return 0;
+        if (pa === 0) return 1;
+        if (pb === 0) return -1;
+        return sort === 'price-asc' ? pa - pb : pb - pa;
+      });
+    }
+
+    // Re-render: hide all, then append visible in order
+    cards.forEach(function(c) { c.style.display = 'none'; });
+    visible.forEach(function(c) {
+      c.style.display = '';
+      grid.appendChild(c);
+    });
+
+    // Count
+    countEl.textContent = visible.length + (visible.length === 1 ? ' saw' : ' saws');
+  }
+
+  tierFilter.addEventListener('change', apply);
+  brandFilter.addEventListener('change', apply);
+  sortOrder.addEventListener('change', apply);
+
+  apply();
+})();
+</script>
 
 {{ end }}
