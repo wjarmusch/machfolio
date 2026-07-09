@@ -1,6 +1,7 @@
 baseURL = "https://machfolio.com/"
-languageCode = "en-us"
+locale = "en-us"
 title = "MachFolio"
+disableKinds = ["taxonomy", "term"]
 
 [params]
   description = "Specs, comparisons, and owner-sourced verdicts for woodworking machinery."
