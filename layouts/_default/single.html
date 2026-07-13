@@ -98,6 +98,34 @@
       {{ if .Params.arbor_size }}
       <tr><td>Arbor</td><td>{{ .Params.arbor_size }}"</td></tr>
       {{ end }}
+      {{/* ---- Jointer-specific rows (render only when populated) ---- */}}
+      {{ if .Params.jointer_type }}
+      <tr><td>Type</td><td>{{ .Params.jointer_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.cutting_width }}
+      <tr><td>Cutting Width</td><td>{{ .Params.cutting_width }}"</td></tr>
+      {{ end }}
+      {{ if .Params.cutterhead_type }}
+      <tr><td>Cutterhead</td><td>{{ .Params.cutterhead_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.knife_count }}
+      <tr><td>Knives / Inserts</td><td>{{ .Params.knife_count }}</td></tr>
+      {{ end }}
+      {{ if .Params.cutterhead_speed }}
+      <tr><td>Cutterhead Speed</td><td>{{ .Params.cutterhead_speed }} RPM</td></tr>
+      {{ end }}
+      {{ if .Params.table_length }}
+      <tr><td>Bed Length</td><td>{{ .Params.table_length }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_depth_of_cut }}
+      <tr><td>Max Depth of Cut</td><td>{{ .Params.max_depth_of_cut }}"</td></tr>
+      {{ end }}
+      {{ if .Params.fence_size }}
+      <tr><td>Fence</td><td>{{ .Params.fence_size }}</td></tr>
+      {{ end }}
+      {{ if .Params.fence_tilt }}
+      <tr><td>Fence Tilt</td><td>{{ .Params.fence_tilt }}</td></tr>
+      {{ end }}
     </table>
 
     {{/* Affiliate buttons */}}
