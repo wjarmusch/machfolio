@@ -4,9 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="impact-site-verification" value="f132e01f-a750-45fd-9347-5681428a4783">
-  <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-  <meta name="description" content="{{ block "description" . }}{{ .Site.Params.description }}{{ end }}">
+
+  {{/* ---- Centralized SEO title + description (single source for <title>, meta, OG, Twitter) ---- */}}
+  {{- $title := "" -}}
+  {{- $desc := "" -}}
+  {{- if .IsHome -}}
+    {{- $title = "MachFolio: Woodworking Machinery Specs, Comparisons & Prices" -}}
+    {{- $desc = "Specs, comparisons, and owner-sourced verdicts for woodworking machinery. Find the right machine at every price tier." -}}
+  {{- else if .Params.is_comparison -}}
+    {{- $title = printf "%s vs %s: Specs & Price | MachFolio" .Params.machine_a.machine_name .Params.machine_b.machine_name -}}
+    {{- $desc = printf "Compare the %s and %s side by side — specs, price, and owner verdicts." .Params.machine_a.machine_name .Params.machine_b.machine_name -}}
+  {{- else if .Params.machine_name -}}
+    {{- $title = printf "%s Specs & Price | MachFolio" .Params.machine_name -}}
+    {{- $desc = .Params.who_its_for | truncate 160 -}}
+  {{- else if eq .Section "guides" -}}
+    {{- if .IsPage -}}
+      {{- $title = printf "%s | MachFolio" .Title -}}
+      {{- $desc = .Summary | truncate 160 -}}
+      {{- with .Description }}{{ $desc = . }}{{ end -}}
+    {{- else -}}
+      {{- $title = "Woodworking Buying Guides | MachFolio" -}}
+      {{- $desc = "Plain-language buying guides for woodworking machinery. Understand the types, price tiers, and specs that matter before you buy." -}}
+    {{- end -}}
+  {{- else if .Params.category_display -}}
+    {{- $title = printf "%ss: Specs & Comparisons by Price Tier | MachFolio" .Params.category_display -}}
+    {{- $desc = printf "Specs, comparisons, and owner-sourced verdicts for %ss. Find the right machine at every price tier." (lower .Params.category_display) -}}
+  {{- else -}}
+    {{- $title = .Site.Title -}}
+    {{- $desc = .Site.Params.description -}}
+  {{- end -}}
+
+  <title>{{ $title }}</title>
+  <meta name="description" content="{{ $desc }}">
   <link rel="canonical" href="{{ .Permalink }}">
+
+  {{/* ---- Open Graph ---- */}}
+  <meta property="og:type" content="{{ if or .Params.machine_name .Params.is_comparison }}product{{ else }}website{{ end }}">
+  <meta property="og:site_name" content="MachFolio">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{/* Placeholder share image until product photos are available; replace with a 1200x630 image */}}
+  <meta property="og:image" content="{{ "apple-touch-icon.png" | absURL }}">
+
+  {{/* ---- Twitter Card ---- */}}
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+  <meta name="twitter:image" content="{{ "apple-touch-icon.png" | absURL }}">
+
+  {{/* ---- Feed discovery ---- */}}
+  <link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | absURL }}" title="MachFolio">
+
   {{ $css := resources.Get "css/style.css" | fingerprint "sha256" }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}">
   <link rel="icon" href="/favicon.ico" sizes="any">

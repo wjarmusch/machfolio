@@ -1,6 +1,4 @@
-{{ define "title" }}{{ .Params.category_display }}s: Specs & Comparisons by Price Tier | MachFolio{{ end }}
-{{ define "description" }}Specs, comparisons, and owner-sourced verdicts for {{ .Params.category_display | lower }}s. Find the right machine at every price tier.{{ end }}
-
+{{/* Page <title> and meta description are set centrally in layouts/_default/baseof.html */}}
 {{ define "main" }}
 
 {{/* ---- Page header ---- */}}
@@ -100,13 +98,7 @@
   {{- $category := index . "category" -}}
   {{- $categorySlug := index . "category_slug" -}}
   {{- if not $categorySlug -}}
-    {{- if eq $category "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-    {{- if eq $category "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-    {{- if eq $category "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-    {{- if eq $category "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-    {{- if eq $category "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-    {{- if eq $category "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-    {{- if eq $category "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+    {{- $categorySlug = index site.Data.categories.slugs $category -}}
   {{- end -}}
   <a href="/{{ $categorySlug }}/{{ $machineSlug }}" class="entry-card"
      data-tier="{{ $tier }}"
@@ -144,6 +136,7 @@
 
   const cards = Array.from(grid.querySelectorAll('.entry-card'));
   const originalOrder = cards.slice();
+  const singular = "{{ .Params.category_display | lower }}";
 
   function apply() {
     const tier = tierFilter.value;
@@ -178,7 +171,7 @@
     });
 
     // Count
-    countEl.textContent = visible.length + (visible.length === 1 ? ' saw' : ' saws');
+    countEl.textContent = visible.length + ' ' + (visible.length === 1 ? singular : singular + 's');
   }
 
   tierFilter.addEventListener('change', apply);

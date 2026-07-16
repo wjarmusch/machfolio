@@ -1,5 +1,14 @@
 {{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=0" -}}
-{{- $csv := resources.GetRemote $url -}}
+{{- $csv := false -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- with .Err -}}
+    {{- errorf "MachFolio: entries CSV fetch failed: %s" . -}}
+  {{- else with .Value -}}
+    {{- $csv = . -}}
+  {{- else -}}
+    {{- errorf "MachFolio: entries CSV returned nothing from %s (is the sheet published to the web?)" $url -}}
+  {{- end -}}
+{{- end -}}
 {{- $rows := $csv | transform.Unmarshal -}}
 {{- $headers := index $rows 0 -}}
 
@@ -19,7 +28,16 @@
 {{/* transform.Unmarshal on CSV returns row arrays (not header-keyed maps), so
      we zip headers into maps the same way the Entries loop above does. */}}
 {{- $specsUrl := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
-{{- $specsCsv := resources.GetRemote $specsUrl -}}
+{{- $specsCsv := false -}}
+{{- with try (resources.GetRemote $specsUrl) -}}
+  {{- with .Err -}}
+    {{- errorf "MachFolio: category-specs CSV fetch failed: %s" . -}}
+  {{- else with .Value -}}
+    {{- $specsCsv = . -}}
+  {{- else -}}
+    {{- errorf "MachFolio: category-specs CSV returned nothing from %s (is the sheet published to the web?)" $specsUrl -}}
+  {{- end -}}
+{{- end -}}
 {{- $specsRows := $specsCsv | transform.Unmarshal -}}
 {{- $specsHeaders := index $specsRows 0 -}}
 {{- $specsBySlug := dict -}}
@@ -39,14 +57,7 @@
 {{- range $allEntries -}}
   {{- if eq (index . "status") "Live" -}}
 
-    {{- $categorySlug := "" -}}
-    {{- if eq (index . "category") "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-    {{- if eq (index . "category") "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-    {{- if eq (index . "category") "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-    {{- if eq (index . "category") "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-    {{- if eq (index . "category") "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-    {{- if eq (index . "category") "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-    {{- if eq (index . "category") "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+    {{- $categorySlug := index site.Data.categories.slugs (index . "category") -}}
 
     {{- $path := printf "%s/%s" $categorySlug (index . "machine_slug") -}}
 
@@ -133,14 +144,7 @@
 {{- range $categories -}}
   {{- $cat := . -}}
 
-  {{- $categorySlug := "" -}}
-  {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-  {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-  {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-  {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-  {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-  {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-  {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+  {{- $categorySlug := index site.Data.categories.slugs $cat -}}
 
   {{/* Collect entries for this category */}}
   {{- $catEntries := slice -}}
@@ -208,14 +212,7 @@
 
           {{/* Determine category slug from the first entry */}}
           {{- $cat := $entryFirst.category -}}
-          {{- $categorySlug := "" -}}
-          {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-          {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-          {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-          {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-          {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-          {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-          {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+          {{- $categorySlug := index site.Data.categories.slugs $cat -}}
 
           {{- $path := printf "compare/%s/%s" $categorySlug $pairKey -}}
 

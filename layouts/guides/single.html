@@ -1,6 +1,4 @@
-{{ define "title" }}{{ .Title }} | MachFolio{{ end }}
-{{ define "description" }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | truncate 160 }}{{ end }}{{ end }}
-
+{{/* Page <title> and meta description are set centrally in layouts/_default/baseof.html */}}
 {{ define "main" }}
 <nav class="breadcrumb">
   <a href="/">MachFolio</a>

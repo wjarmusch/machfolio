@@ -1,0 +1,19 @@
+# Single source of truth for category display names, ordering, and URL slugs.
+# Add a new category here and it flows through the content adapter, homepage,
+# and section templates — no more editing the if-ladders in multiple files.
+order:
+  - Band Saw
+  - Table Saw
+  - Jointer
+  - Planer
+  - Miter Saw
+  - Router
+  - Dust Collector
+slugs:
+  Band Saw: band-saws
+  Table Saw: table-saws
+  Jointer: jointers
+  Planer: planers
+  Miter Saw: miter-saws
+  Router: routers
+  Dust Collector: dust-collectors

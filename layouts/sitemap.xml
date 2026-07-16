@@ -1,0 +1,27 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {{- range .Data.Pages }}
+  {{- if .Permalink }}
+  {{- $priority := "0.5" -}}
+  {{- if .IsHome -}}
+    {{- $priority = "1.0" -}}
+  {{- else if .Params.is_comparison -}}
+    {{- $priority = "0.5" -}}
+  {{- else if .Params.machine_name -}}
+    {{- $priority = "0.7" -}}
+  {{- else if eq .Section "guides" -}}
+    {{- $priority = cond .IsPage "0.6" "0.8" -}}
+  {{- else if .Params.category_display -}}
+    {{- $priority = "0.8" -}}
+  {{- end -}}
+  <url>
+    <loc>{{ .Permalink }}</loc>
+    {{- if not .Lastmod.IsZero }}
+    <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</lastmod>
+    {{- end }}
+    <priority>{{ $priority }}</priority>
+  </url>
+  {{- end }}
+  {{- end }}
+</urlset>

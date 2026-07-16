@@ -12,7 +12,10 @@ disableKinds = ["taxonomy", "term"]
 
 [caches]
   [caches.getresource]
-    maxAge = "0s"
+    # Dedupe the Google Sheet fetches within a single build. Each Cloudflare
+    # deploy runs in a fresh container, so this never serves stale data across
+    # deploys — it only avoids re-downloading the same CSV multiple times per build.
+    maxAge = "10m"
 
 [build]
   writeStats = true

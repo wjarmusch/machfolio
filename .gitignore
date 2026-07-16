@@ -1,3 +1,8 @@
 public/
 resources/_gen/
 .hugo_build.lock
+
+# OS + build cruft
+.DS_Store
+**/.DS_Store
+hugo_stats.json

@@ -1,4 +1,13 @@
 {{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
-{{- $csv := resources.GetRemote $url -}}
+{{- $csv := false -}}
+{{- with try (resources.GetRemote $url) -}}
+  {{- with .Err -}}
+    {{- errorf "MachFolio: category-specs CSV fetch failed: %s" . -}}
+  {{- else with .Value -}}
+    {{- $csv = . -}}
+  {{- else -}}
+    {{- errorf "MachFolio: category-specs CSV returned nothing from %s (is the sheet published to the web?)" $url -}}
+  {{- end -}}
+{{- end -}}
 {{- $specs := $csv | transform.Unmarshal -}}
 {{- return $specs -}}

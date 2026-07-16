@@ -1,6 +1,4 @@
-{{ define "title" }}{{ if .Params.is_comparison }}{{ .Params.machine_a.machine_name }} vs {{ .Params.machine_b.machine_name }}: Specs & Price | MachFolio{{ else }}{{ .Params.machine_name }} Specs & Price | MachFolio{{ end }}{{ end }}
-{{ define "description" }}{{ if .Params.is_comparison }}Compare the {{ .Params.machine_a.machine_name }} and {{ .Params.machine_b.machine_name }} side by side — specs, price, and owner verdicts.{{ else }}{{ .Params.who_its_for | truncate 160 }}{{ end }}{{ end }}
-
+{{/* Page <title> and meta description are set centrally in layouts/_default/baseof.html */}}
 {{ define "main" }}
 {{ if .Params.is_comparison }}
 {{ partial "comparison-page.html" . }}
@@ -44,9 +42,6 @@
 
     <h2 class="section-header">Specifications</h2>
     <table class="spec-table">
-      {{ if .Params.current_price }}
-      <tr><td>Price</td><td>${{ .Params.current_price }}</td></tr>
-      {{ end }}
       {{ if .Params.motor_hp }}
       <tr><td>Motor</td><td>{{ .Params.motor_hp }} HP</td></tr>
       {{ end }}
@@ -130,19 +125,19 @@
 
     {{/* Affiliate buttons */}}
     {{ if .Params.affiliate_link_1 }}
-    <a href="{{ .Params.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+    <a href="{{ .Params.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
       <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_1 }}</span>
       {{ if .Params.affiliate_price_1 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_1 }}</span>{{ end }}
     </a>
     {{ end }}
     {{ if .Params.affiliate_link_2 }}
-    <a href="{{ .Params.affiliate_link_2 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+    <a href="{{ .Params.affiliate_link_2 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
       <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_2 }}</span>
       {{ if .Params.affiliate_price_2 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_2 }}</span>{{ end }}
     </a>
     {{ end }}
     {{ if .Params.affiliate_link_3 }}
-    <a href="{{ .Params.affiliate_link_3 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+    <a href="{{ .Params.affiliate_link_3 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
       <span class="affiliate-btn-retailer">Buy at {{ .Params.affiliate_retailer_3 }}</span>
       {{ if .Params.affiliate_price_3 }}<span class="affiliate-btn-price">${{ .Params.affiliate_price_3 }}</span>{{ end }}
     </a>

@@ -1,6 +1,4 @@
-{{ define "title" }}MachFolio: Woodworking Machinery Specs, Comparisons & Prices{{ end }}
-{{ define "description" }}Specs, comparisons, and owner-sourced verdicts for woodworking machinery. Find the right machine at every price tier.{{ end }}
-
+{{/* Page <title> and meta description are set centrally in layouts/_default/baseof.html */}}
 {{ define "main" }}
 
 {{/* ---- Fetch all entries ---- */}}
@@ -34,19 +32,12 @@
     {{- end -}}
 
     {{/* Render category cards in defined order */}}
-    {{- $categoryOrder := slice "Band Saw" "Table Saw" "Jointer" "Planer" "Miter Saw" "Router" "Dust Collector" -}}
+    {{- $categoryOrder := site.Data.categories.order -}}
     {{- range $categoryOrder -}}
       {{- $cat := . -}}
       {{- if in $activeCategories $cat -}}
 
-        {{- $categorySlug := "" -}}
-        {{- if eq $cat "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-        {{- if eq $cat "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-        {{- if eq $cat "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-        {{- if eq $cat "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-        {{- if eq $cat "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-        {{- if eq $cat "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-        {{- if eq $cat "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+        {{- $categorySlug := index site.Data.categories.slugs $cat -}}
 
         {{/* Count entries in this category */}}
         {{- $count := 0 -}}
@@ -78,14 +69,7 @@
 
   <div class="card-grid">
     {{- range $recent -}}
-      {{- $categorySlug := "" -}}
-      {{- if eq .category "Band Saw" }}{{- $categorySlug = "band-saws" -}}{{- end -}}
-      {{- if eq .category "Table Saw" }}{{- $categorySlug = "table-saws" -}}{{- end -}}
-      {{- if eq .category "Jointer" }}{{- $categorySlug = "jointers" -}}{{- end -}}
-      {{- if eq .category "Planer" }}{{- $categorySlug = "planers" -}}{{- end -}}
-      {{- if eq .category "Miter Saw" }}{{- $categorySlug = "miter-saws" -}}{{- end -}}
-      {{- if eq .category "Router" }}{{- $categorySlug = "routers" -}}{{- end -}}
-      {{- if eq .category "Dust Collector" }}{{- $categorySlug = "dust-collectors" -}}{{- end -}}
+      {{- $categorySlug := index site.Data.categories.slugs .category -}}
 
       <a href="/{{ $categorySlug }}/{{ .machine_slug }}" class="entry-card">
         <div class="entry-card-title">

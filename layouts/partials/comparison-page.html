@@ -103,7 +103,7 @@
     <p class="prose">{{ $a.who_its_for | truncate 360 }}</p>
     {{ end }}
     {{ if $a.affiliate_link_1 }}
-    <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+    <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
       <span class="affiliate-btn-retailer">Buy at {{ $a.affiliate_retailer_1 }}</span>
       {{ if $a.affiliate_price_1 }}<span class="affiliate-btn-price">${{ $a.affiliate_price_1 }}</span>{{ end }}
     </a>
@@ -115,7 +115,7 @@
     <p class="prose">{{ $b.who_its_for | truncate 360 }}</p>
     {{ end }}
     {{ if $b.affiliate_link_1 }}
-    <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored">
+    <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
       <span class="affiliate-btn-retailer">Buy at {{ $b.affiliate_retailer_1 }}</span>
       {{ if $b.affiliate_price_1 }}<span class="affiliate-btn-price">${{ $b.affiliate_price_1 }}</span>{{ end }}
     </a>
