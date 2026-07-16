@@ -66,7 +66,7 @@
       {{- $catSpec = index $specsBySlug (index . "machine_slug") -}}
     {{- end -}}
 
-    {{- $.AddPage (dict
+    {{- $page := dict
       "kind" "page"
       "path" $path
       "params" (dict
@@ -123,7 +123,15 @@
         "compare_3_slug" (index . "compare_3_slug")
         "compare_3_note" (index . "compare_3_note")
       )
-    ) -}}
+    -}}
+    {{/* lastmod: single last_updated column (populate with the later of a
+         genuine content change or a real price change). Missing/blank = omit. */}}
+    {{- $lastUpdated := default "" (index . "last_updated") | strings.TrimSpace -}}
+    {{- with $lastUpdated -}}
+      {{- $t := time.AsTime . -}}
+      {{- $page = merge $page (dict "dates" (dict "date" $t "lastmod" $t)) -}}
+    {{- end -}}
+    {{- $.AddPage $page -}}
 
   {{- end -}}
 {{- end -}}
@@ -154,7 +162,7 @@
     {{- end -}}
   {{- end -}}
 
-  {{- $.AddPage (dict
+  {{- $page := dict
     "kind" "section"
     "path" $categorySlug
     "params" (dict
@@ -162,7 +170,18 @@
       "category_slug" $categorySlug
       "entries" $catEntries
     )
-  ) -}}
+  -}}
+  {{/* lastmod for the category page = latest last_updated across its entries */}}
+  {{- $catMod := "" -}}
+  {{- range $catEntries -}}
+    {{- $lu := default "" (index . "last_updated") | strings.TrimSpace -}}
+    {{- if and $lu (gt $lu $catMod) -}}{{- $catMod = $lu -}}{{- end -}}
+  {{- end -}}
+  {{- with $catMod -}}
+    {{- $t := time.AsTime . -}}
+    {{- $page = merge $page (dict "dates" (dict "date" $t "lastmod" $t)) -}}
+  {{- end -}}
+  {{- $.AddPage $page -}}
 
 {{- end -}}
 
@@ -216,7 +235,7 @@
 
           {{- $path := printf "compare/%s/%s" $categorySlug $pairKey -}}
 
-          {{- $.AddPage (dict
+          {{- $page := dict
             "kind" "page"
             "path" $path
             "params" (dict
@@ -226,7 +245,17 @@
               "machine_a" $entryFirst
               "machine_b" $entrySecond
             )
-          ) -}}
+          -}}
+          {{/* lastmod for the comparison page = the later of the two machines' last_updated */}}
+          {{- $fa := default "" (index $entryFirst "last_updated") | strings.TrimSpace -}}
+          {{- $fb := default "" (index $entrySecond "last_updated") | strings.TrimSpace -}}
+          {{- $cmpMod := $fa -}}
+          {{- if gt $fb $fa -}}{{- $cmpMod = $fb -}}{{- end -}}
+          {{- with $cmpMod -}}
+            {{- $t := time.AsTime . -}}
+            {{- $page = merge $page (dict "dates" (dict "date" $t "lastmod" $t)) -}}
+          {{- end -}}
+          {{- $.AddPage $page -}}
 
         {{- end -}}
       {{- end -}}
