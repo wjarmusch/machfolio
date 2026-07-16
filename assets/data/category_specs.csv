@@ -1,0 +1,41 @@
+machine_slug,saw_class,rip_capacity_right,blade_size,arbor_size,max_cut_depth_90,max_cut_depth_45,blade_tilt,fence_type,drive_type,jointer_type,cutting_width,cutterhead_type,cutterhead_speed,knife_count,table_length,max_depth_of_cut,fence_size,fence_tilt
+ryobi-rts12,Jobsite,12,10,0.625,3,2.5,Left,Rack and pinion,Direct,,,,,,,,,
+ryobi-rts08,Jobsite,12.5,8.25,0.625,2.5,1.75,Left,Rack and pinion,Direct,,,,,,,,,
+craftsman-cmxetax69434502,Jobsite,12,10,0.625,3.125,2.25,Left,Aluminum rail,Direct,,,,,,,,,
+genesis-gts10sb,Jobsite,9.5,10,0.625,3,,Left,Aluminum rail,Direct,,,,,,,,,
+dewalt-dwe7491rs,Jobsite,32.5,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,
+bosch-4100xc-10,Jobsite,30,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,
+metabo-hpt-c10rjs,Jobsite,35,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,
+ridgid-r4514,Jobsite,30,10,0.625,3.5,2.25,Left,Aluminum rail,Direct,,,,,,,,,
+grizzly-g0962,Hybrid,30,10,0.625,3.25,2.25,Left,Aluminum rail,Belt,,,,,,,,,
+sawstop-cts-120a60,Jobsite,24.5,10,0.625,3.125,2.125,Left,Rack and pinion,Direct,,,,,,,,,
+delta-36-725t2,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,
+skilsaw-spt99-11,Jobsite,30.5,10,0.625,3.625,2.5,Left,Rack and pinion,Direct,,,,,,,,,
+sawstop-contractor-saw-cns,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,
+jet-proshop-ii-jps-10,Hybrid,30,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,
+grizzly-g1023rl,Cabinet,32,10,0.625,3,2.125,Left,T-square,Belt,,,,,,,,,
+laguna-fusion-f2,Hybrid,36,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,
+sawstop-pcs-3hp-professional-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,
+powermatic-pm2000b-3hp-table-saw,Cabinet,30,10,0.625,3.125,2.1875,Left,Accu-Fence,Belt,,,,,,,,,
+jet-xactasaw-deluxe-3hp-cabinet-saw,Cabinet,30,10,0.625,3.125,2.125,Left,Xacta,Belt,,,,,,,,,
+sawstop-ics-3hp-industrial-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,
+grizzly-g0858,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),76,1/8,38 x 4-1/2 inches,45 to 135
+grizzly-g0945,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-5/16 inches,90 to 45
+grizzly-g0946,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (6-row),30,1/8,19-3/4 x 4-1/4 inches,90 to 45
+cutech-40160hb,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (two-sided carbide),30,1/8,19-5/8 x 4-3/8 inches,90 to 135
+wen-jt3062,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-1/4 inches,90 to 135
+grizzly-g0947,,,,,,,,,,Benchtop,8,Spiral,11000,16 inserts (6-row),34,1/8,19-3/4 x 4-1/4 inches,90 to 45
+wen-jt833h,,,,,,,,,,Benchtop,8,Spiral,11000,16 staggered HSS blades,33,1/8,19-3/4 x 4-1/4 inches,90 to 135
+grizzly-g0986,,,,,,,,,,Benchtop,10,Spiral,11000,20 inserts (6-row),30.75,1/8,24 x 4-3/8 inches,90 to 45
+grizzly-g0958,,,,,,,,,,Benchtop,8,Helical,8500,18 inserts (2-row),29.25,3/64,21 x 4 inches,90 to 45
+grizzly-g0452z,,,,,,,,,,Open Stand,6,Spiral,4800,32 inserts (4-row),46,1/8,35 x 5 inches,45 to 135
+grizzly-g0814,,,,,,,,,,Closed Stand,6,Straight Knife,5000,3 knives,47.375,1/8,29-1/8 x 4 inches,45 to 135
+grizzly-g0959,,,,,,,,,,Benchtop,12,Helical,8500,28 inserts (2-row),42.375,3/64,25 x 5 inches,90 to 45
+jet-jj-6csdx,,,,,,,,,,Closed Stand,6,Straight Knife,6000,3 knives,56,,32-3/4 x 3-7/8 inches,45 to 135
+grizzly-g0490x,,,,,,,,,,Closed Stand,8,Spiral,4800,40 inserts (4-row),76.375,1/8,36 x 5 inches,45 to 135
+powermatic-54hh,,,,,,,,,,Closed Stand,6,Helical,6000,40 inserts (four-sided carbide),66,,38 x 4 inches,45 to 135
+grizzly-g0856,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),72,1/8,38 x 4-5/8 inches,
+south-bend-sb1091,,,,,,,,,,Closed Stand,8,Helical,7000,36 inserts (4-row),83,1/8,38 x 4-5/8 inches,45 to 135
+powermatic-pj-882hh,,,,,,,,,,Closed Stand,8,Helical,7000,54 inserts (four-sided),83,1/8,44-3/4 inches long,45 to 135
+grizzly-g0834,,,,,,,,,,Closed Stand,12,Helical,4950,96 inserts (8-row),84,1/8,47 x 5-3/8 inches,45 to 135
+grizzly-g9860zx,,,,,,,,,,Closed Stand,12,Spiral,5900,84 inserts (6-row),80,5/16,39-1/4 x 4-3/4 inches,45 to 135
