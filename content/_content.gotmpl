@@ -1,13 +1,10 @@
-{{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=0" -}}
-{{- $csv := false -}}
-{{- with try (resources.GetRemote $url) -}}
-  {{- with .Err -}}
-    {{- errorf "MachFolio: entries CSV fetch failed: %s" . -}}
-  {{- else with .Value -}}
-    {{- $csv = . -}}
-  {{- else -}}
-    {{- errorf "MachFolio: entries CSV returned nothing from %s (is the sheet published to the web?)" $url -}}
-  {{- end -}}
+{{/* Data source: committed local snapshot at assets/data/entries.csv.
+     Refresh it from the Google Sheet with ./sync-data.command, then commit.
+     Builds never touch the network, so they are reproducible and cannot be
+     broken by Google being slow/rate-limited. */}}
+{{- $csv := resources.Get "data/entries.csv" -}}
+{{- if not $csv -}}
+  {{- errorf "MachFolio: local data file assets/data/entries.csv not found. Run ./sync-data.command to fetch it from the sheet, then commit it." -}}
 {{- end -}}
 {{- $rows := $csv | transform.Unmarshal -}}
 {{- $headers := index $rows 0 -}}
@@ -27,16 +24,9 @@
 {{/* ---- Fetch category_specs and build a lookup keyed by machine_slug ---- */}}
 {{/* transform.Unmarshal on CSV returns row arrays (not header-keyed maps), so
      we zip headers into maps the same way the Entries loop above does. */}}
-{{- $specsUrl := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
-{{- $specsCsv := false -}}
-{{- with try (resources.GetRemote $specsUrl) -}}
-  {{- with .Err -}}
-    {{- errorf "MachFolio: category-specs CSV fetch failed: %s" . -}}
-  {{- else with .Value -}}
-    {{- $specsCsv = . -}}
-  {{- else -}}
-    {{- errorf "MachFolio: category-specs CSV returned nothing from %s (is the sheet published to the web?)" $specsUrl -}}
-  {{- end -}}
+{{- $specsCsv := resources.Get "data/category_specs.csv" -}}
+{{- if not $specsCsv -}}
+  {{- errorf "MachFolio: local data file assets/data/category_specs.csv not found. Run ./sync-data.command to fetch it from the sheet, then commit it." -}}
 {{- end -}}
 {{- $specsRows := $specsCsv | transform.Unmarshal -}}
 {{- $specsHeaders := index $specsRows 0 -}}

@@ -100,7 +100,7 @@
   <div class="compare-verdict-block">
     <h2 class="section-header">{{ $a.machine_name }}</h2>
     {{ if $a.who_its_for }}
-    <p class="prose">{{ $a.who_its_for | truncate 360 }}</p>
+    <p class="prose">{{ $a.who_its_for }}</p>
     {{ end }}
     {{ if $a.affiliate_link_1 }}
     <a href="{{ $a.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">
@@ -112,7 +112,7 @@
   <div class="compare-verdict-block">
     <h2 class="section-header">{{ $b.machine_name }}</h2>
     {{ if $b.who_its_for }}
-    <p class="prose">{{ $b.who_its_for | truncate 360 }}</p>
+    <p class="prose">{{ $b.who_its_for }}</p>
     {{ end }}
     {{ if $b.affiliate_link_1 }}
     <a href="{{ $b.affiliate_link_1 }}" class="affiliate-btn" target="_blank" rel="nofollow sponsored noopener">

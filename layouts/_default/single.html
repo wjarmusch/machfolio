@@ -194,14 +194,18 @@
     {{- $self := .Params.machine_slug -}}
     {{- $cat := .Params.category_slug -}}
     {{- $compares := slice -}}
-    {{- if .Params.compare_1_slug }}{{ $compares = $compares | append .Params.compare_1_slug }}{{ end -}}
-    {{- if .Params.compare_2_slug }}{{ $compares = $compares | append .Params.compare_2_slug }}{{ end -}}
-    {{- if .Params.compare_3_slug }}{{ $compares = $compares | append .Params.compare_3_slug }}{{ end -}}
+    {{- if .Params.compare_1_slug }}{{ $compares = $compares | append (dict "slug" .Params.compare_1_slug "note" .Params.compare_1_note) }}{{ end -}}
+    {{- if .Params.compare_2_slug }}{{ $compares = $compares | append (dict "slug" .Params.compare_2_slug "note" .Params.compare_2_note) }}{{ end -}}
+    {{- if .Params.compare_3_slug }}{{ $compares = $compares | append (dict "slug" .Params.compare_3_slug "note" .Params.compare_3_note) }}{{ end -}}
     <ul class="alt-list">
       {{ range $compares }}
-      {{- $first := $self -}}{{- $second := . -}}
-      {{- if gt $self . -}}{{- $first = . -}}{{- $second = $self -}}{{- end -}}
-      <li>Compare this product with <a href="/compare/{{ $cat }}/{{ $first }}-vs-{{ $second }}">{{ replace . "-" " " | title }}</a></li>
+      {{- $slug := .slug -}}
+      {{- $first := $self -}}{{- $second := $slug -}}
+      {{- if gt $self $slug -}}{{- $first = $slug -}}{{- $second = $self -}}{{- end -}}
+      <li>
+        {{ with .note }}<p class="alt-note">{{ . }}</p>{{ end }}
+        <a href="/compare/{{ $cat }}/{{ $first }}-vs-{{ $second }}">Compare with {{ replace $slug "-" " " | title }} <span aria-hidden="true">&rarr;</span></a>
+      </li>
       {{ end }}
     </ul>
     {{ end }}

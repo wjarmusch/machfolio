@@ -1,13 +1,7 @@
-{{- $url := "https://docs.google.com/spreadsheets/d/1rP3yuVYIA0NjGi7QDYF-it4TxI6BWr4El8GeyTS-FM4/export?format=csv&gid=1247799387" -}}
-{{- $csv := false -}}
-{{- with try (resources.GetRemote $url) -}}
-  {{- with .Err -}}
-    {{- errorf "MachFolio: category-specs CSV fetch failed: %s" . -}}
-  {{- else with .Value -}}
-    {{- $csv = . -}}
-  {{- else -}}
-    {{- errorf "MachFolio: category-specs CSV returned nothing from %s (is the sheet published to the web?)" $url -}}
-  {{- end -}}
+{{/* Reads the committed local snapshot; refresh via ./sync-data.command. */}}
+{{- $csv := resources.Get "data/category_specs.csv" -}}
+{{- if not $csv -}}
+  {{- errorf "MachFolio: local data file assets/data/category_specs.csv not found. Run ./sync-data.command to fetch it from the sheet, then commit it." -}}
 {{- end -}}
 {{- $specs := $csv | transform.Unmarshal -}}
 {{- return $specs -}}
