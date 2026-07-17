@@ -121,6 +121,31 @@
       {{ if .Params.fence_tilt }}
       <tr><td>Fence Tilt</td><td>{{ .Params.fence_tilt }}</td></tr>
       {{ end }}
+      {{/* ---- Planer-specific rows (render only when populated) ---- */}}
+      {{ if .Params.planer_type }}
+      <tr><td>Type</td><td>{{ .Params.planer_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.max_stock_width }}
+      <tr><td>Max Stock Width</td><td>{{ .Params.max_stock_width }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_stock_thickness }}
+      <tr><td>Max Stock Thickness</td><td>{{ .Params.max_stock_thickness }}"</td></tr>
+      {{ end }}
+      {{ if .Params.planer_cutterhead_type }}
+      <tr><td>Cutterhead</td><td>{{ .Params.planer_cutterhead_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.planer_knife_count }}
+      <tr><td>Knives / Inserts</td><td>{{ .Params.planer_knife_count }}</td></tr>
+      {{ end }}
+      {{ if .Params.planer_cutterhead_speed }}
+      <tr><td>Cutterhead Speed</td><td>{{ .Params.planer_cutterhead_speed }} RPM</td></tr>
+      {{ end }}
+      {{ if .Params.max_depth_per_pass }}
+      <tr><td>Max Depth per Pass</td><td>{{ .Params.max_depth_per_pass }}"</td></tr>
+      {{ end }}
+      {{ if .Params.feed_rate }}
+      <tr><td>Feed Rate</td><td>{{ .Params.feed_rate }} FPM</td></tr>
+      {{ end }}
     </table>
 
     {{/* Affiliate buttons */}}
