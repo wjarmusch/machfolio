@@ -146,6 +146,28 @@
       {{ if .Params.feed_rate }}
       <tr><td>Feed Rate</td><td>{{ .Params.feed_rate }} FPM</td></tr>
       {{ end }}
+      {{/* ---- Miter saw-specific rows (render only when populated) ---- */}}
+      {{ if .Params.miter_saw_type }}
+      <tr><td>Type</td><td>{{ .Params.miter_saw_type }}</td></tr>
+      {{ end }}
+      {{ if .Params.miter_blade_size }}
+      <tr><td>Blade Size</td><td>{{ .Params.miter_blade_size }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_crosscut_capacity }}
+      <tr><td>Max Crosscut</td><td>{{ .Params.max_crosscut_capacity }}"</td></tr>
+      {{ end }}
+      {{ if .Params.max_vertical_capacity }}
+      <tr><td>Max Vertical Capacity</td><td>{{ .Params.max_vertical_capacity }}"</td></tr>
+      {{ end }}
+      {{ if .Params.bevel_range }}
+      <tr><td>Bevel Range</td><td>{{ .Params.bevel_range }}</td></tr>
+      {{ end }}
+      {{ if .Params.miter_range }}
+      <tr><td>Miter Range</td><td>{{ .Params.miter_range }}</td></tr>
+      {{ end }}
+      {{ if .Params.positive_stops }}
+      <tr><td>Positive Stops</td><td>{{ .Params.positive_stops }}</td></tr>
+      {{ end }}
     </table>
 
     {{/* Affiliate buttons */}}

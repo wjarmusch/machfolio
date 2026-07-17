@@ -1,61 +1,81 @@
-machine_slug,saw_class,rip_capacity_right,blade_size,arbor_size,max_cut_depth_90,max_cut_depth_45,blade_tilt,fence_type,drive_type,jointer_type,cutting_width,cutterhead_type,cutterhead_speed,knife_count,table_length,max_depth_of_cut,fence_size,fence_tilt,planer_type,max_stock_width,max_stock_thickness,planer_cutterhead_type,planer_cutterhead_speed,planer_knife_count,max_depth_per_pass,feed_rate
-ryobi-rts12,Jobsite,12,10,0.625,3,2.5,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-ryobi-rts08,Jobsite,12.5,8.25,0.625,2.5,1.75,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-craftsman-cmxetax69434502,Jobsite,12,10,0.625,3.125,2.25,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,
-genesis-gts10sb,Jobsite,9.5,10,0.625,3,,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,
-dewalt-dwe7491rs,Jobsite,32.5,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-bosch-4100xc-10,Jobsite,30,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-metabo-hpt-c10rjs,Jobsite,35,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-ridgid-r4514,Jobsite,30,10,0.625,3.5,2.25,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,
-grizzly-g0962,Hybrid,30,10,0.625,3.25,2.25,Left,Aluminum rail,Belt,,,,,,,,,,,,,,,,,
-sawstop-cts-120a60,Jobsite,24.5,10,0.625,3.125,2.125,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-delta-36-725t2,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,,,,,,,,,
-skilsaw-spt99-11,Jobsite,30.5,10,0.625,3.625,2.5,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,
-sawstop-contractor-saw-cns,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,,,,,,,,,
-jet-proshop-ii-jps-10,Hybrid,30,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,
-grizzly-g1023rl,Cabinet,32,10,0.625,3,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,
-laguna-fusion-f2,Hybrid,36,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,
-sawstop-pcs-3hp-professional-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,,,,,,,,,
-powermatic-pm2000b-3hp-table-saw,Cabinet,30,10,0.625,3.125,2.1875,Left,Accu-Fence,Belt,,,,,,,,,,,,,,,,,
-jet-xactasaw-deluxe-3hp-cabinet-saw,Cabinet,30,10,0.625,3.125,2.125,Left,Xacta,Belt,,,,,,,,,,,,,,,,,
-sawstop-ics-3hp-industrial-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,,,,,,,,,
-grizzly-g0858,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),76,1/8,38 x 4-1/2 inches,45 to 135,,,,,,,,
-grizzly-g0945,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-5/16 inches,90 to 45,,,,,,,,
-grizzly-g0946,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (6-row),30,1/8,19-3/4 x 4-1/4 inches,90 to 45,,,,,,,,
-cutech-40160hb,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (two-sided carbide),30,1/8,19-5/8 x 4-3/8 inches,90 to 135,,,,,,,,
-wen-jt3062,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-1/4 inches,90 to 135,,,,,,,,
-grizzly-g0947,,,,,,,,,,Benchtop,8,Spiral,11000,16 inserts (6-row),34,1/8,19-3/4 x 4-1/4 inches,90 to 45,,,,,,,,
-wen-jt833h,,,,,,,,,,Benchtop,8,Spiral,11000,16 staggered HSS blades,33,1/8,19-3/4 x 4-1/4 inches,90 to 135,,,,,,,,
-grizzly-g0986,,,,,,,,,,Benchtop,10,Spiral,11000,20 inserts (6-row),30.75,1/8,24 x 4-3/8 inches,90 to 45,,,,,,,,
-grizzly-g0958,,,,,,,,,,Benchtop,8,Helical,8500,18 inserts (2-row),29.25,3/64,21 x 4 inches,90 to 45,,,,,,,,
-grizzly-g0452z,,,,,,,,,,Open Stand,6,Spiral,4800,32 inserts (4-row),46,1/8,35 x 5 inches,45 to 135,,,,,,,,
-grizzly-g0814,,,,,,,,,,Closed Stand,6,Straight Knife,5000,3 knives,47.375,1/8,29-1/8 x 4 inches,45 to 135,,,,,,,,
-grizzly-g0959,,,,,,,,,,Benchtop,12,Helical,8500,28 inserts (2-row),42.375,3/64,25 x 5 inches,90 to 45,,,,,,,,
-jet-jj-6csdx,,,,,,,,,,Closed Stand,6,Straight Knife,6000,3 knives,56,,32-3/4 x 3-7/8 inches,45 to 135,,,,,,,,
-grizzly-g0490x,,,,,,,,,,Closed Stand,8,Spiral,4800,40 inserts (4-row),76.375,1/8,36 x 5 inches,45 to 135,,,,,,,,
-powermatic-54hh,,,,,,,,,,Closed Stand,6,Helical,6000,40 inserts (four-sided carbide),66,,38 x 4 inches,45 to 135,,,,,,,,
-grizzly-g0856,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),72,1/8,38 x 4-5/8 inches,,,,,,,,,
-south-bend-sb1091,,,,,,,,,,Closed Stand,8,Helical,7000,36 inserts (4-row),83,1/8,38 x 4-5/8 inches,45 to 135,,,,,,,,
-powermatic-pj-882hh,,,,,,,,,,Closed Stand,8,Helical,7000,54 inserts (four-sided),83,1/8,44-3/4 inches long,45 to 135,,,,,,,,
-grizzly-g0834,,,,,,,,,,Closed Stand,12,Helical,4950,96 inserts (8-row),84,1/8,47 x 5-3/8 inches,45 to 135,,,,,,,,
-grizzly-g9860zx,,,,,,,,,,Closed Stand,12,Spiral,5900,84 inserts (6-row),80,5/16,39-1/4 x 4-3/4 inches,45 to 135,,,,,,,,
-wen-6550t,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,,2,3/32,26
-wen-6552t,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,8500,3,3/32,26
-craftsman-cmew320,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,8000,2,1/16,26
-porter-cable-pc305tp,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,8000,2,3/32,26.2
-bauer-63445,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,9400,2,3/32,
-dewalt-dw734,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,10000,3,1/8,26
-ridgid-r4331,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6.125,Straight Knife,9000,3,1/8,23.5
-delta-22-555,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,,2,3/32,
-dewalt-dw735x,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,10000,3,1/8,
-makita-2012nb,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12,6,Straight Knife,8500,2,1/8,28
-rikon-25-130h,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Segmented Insert,10000,26,1/8,26
-cutech-40200hc-ct,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Spiral,10000,26,1/8,26
-grizzly-g0453,,,,,,,,,,,,,,,,,,,Stationary,15,8,Straight Knife,4800,3,3/32,16 / 30 (two-speed)
-grizzly-g0453z,,,,,,,,,,,,,,,,,,,Stationary,15,8,Spiral,4800,74,3/32,16 / 30 (two-speed)
-shop-fox-w1742h,,,,,,,,,,,,,,,,,,,Stationary,15,8,Helical,4800,75,3/32,16 / 30 (two-speed)
-jet-jwp-15bhh,,,,,,,,,,,,,,,,,,,Stationary,15,6,Helical,5200,48,1/8,16 / 20 (two-speed)
-powermatic-209hh,,,,,,,,,,,,,,,,,,,Stationary,20,8,Helical,5000,100,,24 / 31 (two-speed)
-jet-jwp-208hh-1,,,,,,,,,,,,,,,,,,,Stationary,20,8,Helical,5000,92,3/32,24 / 31 (two-speed)
-grizzly-g0454z,,,,,,,,,,,,,,,,,,,Stationary,20,8,Spiral,4800,98,3/16,16 / 20 (two-speed)
-grizzly-g0544,,,,,,,,,,,,,,,,,,,Stationary,20,7,Spiral,5200,96,1/8,17 to 26 (variable)
+machine_slug,saw_class,rip_capacity_right,blade_size,arbor_size,max_cut_depth_90,max_cut_depth_45,blade_tilt,fence_type,drive_type,jointer_type,cutting_width,cutterhead_type,cutterhead_speed,knife_count,table_length,max_depth_of_cut,fence_size,fence_tilt,planer_type,max_stock_width,max_stock_thickness,planer_cutterhead_type,planer_cutterhead_speed,planer_knife_count,max_depth_per_pass,feed_rate,miter_saw_type,miter_blade_size,max_crosscut_capacity,bevel_range,miter_range,max_vertical_capacity,positive_stops
+ryobi-rts12,Jobsite,12,10,0.625,3,2.5,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+ryobi-rts08,Jobsite,12.5,8.25,0.625,2.5,1.75,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+craftsman-cmxetax69434502,Jobsite,12,10,0.625,3.125,2.25,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+genesis-gts10sb,Jobsite,9.5,10,0.625,3,,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+dewalt-dwe7491rs,Jobsite,32.5,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+bosch-4100xc-10,Jobsite,30,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+metabo-hpt-c10rjs,Jobsite,35,10,0.625,3.125,2.25,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+ridgid-r4514,Jobsite,30,10,0.625,3.5,2.25,Left,Aluminum rail,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+grizzly-g0962,Hybrid,30,10,0.625,3.25,2.25,Left,Aluminum rail,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+sawstop-cts-120a60,Jobsite,24.5,10,0.625,3.125,2.125,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+delta-36-725t2,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+skilsaw-spt99-11,Jobsite,30.5,10,0.625,3.625,2.5,Left,Rack and pinion,Direct,,,,,,,,,,,,,,,,,,,,,,,,
+sawstop-contractor-saw-cns,Contractor,30,10,0.625,3.125,2.25,Left,T-square,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+jet-proshop-ii-jps-10,Hybrid,30,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+grizzly-g1023rl,Cabinet,32,10,0.625,3,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+laguna-fusion-f2,Hybrid,36,10,0.625,3.125,2.125,Left,T-square,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+sawstop-pcs-3hp-professional-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+powermatic-pm2000b-3hp-table-saw,Cabinet,30,10,0.625,3.125,2.1875,Left,Accu-Fence,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+jet-xactasaw-deluxe-3hp-cabinet-saw,Cabinet,30,10,0.625,3.125,2.125,Left,Xacta,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+sawstop-ics-3hp-industrial-cabinet-saw,Cabinet,36,10,0.625,3.125,2.25,Left,T-Glide,Belt,,,,,,,,,,,,,,,,,,,,,,,,
+grizzly-g0858,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),76,1/8,38 x 4-1/2 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0945,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-5/16 inches,90 to 45,,,,,,,,,,,,,,,
+grizzly-g0946,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (6-row),30,1/8,19-3/4 x 4-1/4 inches,90 to 45,,,,,,,,,,,,,,,
+cutech-40160hb,,,,,,,,,,Benchtop,6,Spiral,11000,12 inserts (two-sided carbide),30,1/8,19-5/8 x 4-3/8 inches,90 to 135,,,,,,,,,,,,,,,
+wen-jt3062,,,,,,,,,,Benchtop,6,Straight Knife,11000,2 knives,30,1/8,19-3/4 x 4-1/4 inches,90 to 135,,,,,,,,,,,,,,,
+grizzly-g0947,,,,,,,,,,Benchtop,8,Spiral,11000,16 inserts (6-row),34,1/8,19-3/4 x 4-1/4 inches,90 to 45,,,,,,,,,,,,,,,
+wen-jt833h,,,,,,,,,,Benchtop,8,Spiral,11000,16 staggered HSS blades,33,1/8,19-3/4 x 4-1/4 inches,90 to 135,,,,,,,,,,,,,,,
+grizzly-g0986,,,,,,,,,,Benchtop,10,Spiral,11000,20 inserts (6-row),30.75,1/8,24 x 4-3/8 inches,90 to 45,,,,,,,,,,,,,,,
+grizzly-g0958,,,,,,,,,,Benchtop,8,Helical,8500,18 inserts (2-row),29.25,3/64,21 x 4 inches,90 to 45,,,,,,,,,,,,,,,
+grizzly-g0452z,,,,,,,,,,Open Stand,6,Spiral,4800,32 inserts (4-row),46,1/8,35 x 5 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0814,,,,,,,,,,Closed Stand,6,Straight Knife,5000,3 knives,47.375,1/8,29-1/8 x 4 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0959,,,,,,,,,,Benchtop,12,Helical,8500,28 inserts (2-row),42.375,3/64,25 x 5 inches,90 to 45,,,,,,,,,,,,,,,
+jet-jj-6csdx,,,,,,,,,,Closed Stand,6,Straight Knife,6000,3 knives,56,,32-3/4 x 3-7/8 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0490x,,,,,,,,,,Closed Stand,8,Spiral,4800,40 inserts (4-row),76.375,1/8,36 x 5 inches,45 to 135,,,,,,,,,,,,,,,
+powermatic-54hh,,,,,,,,,,Closed Stand,6,Helical,6000,40 inserts (four-sided carbide),66,,38 x 4 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0856,,,,,,,,,,Closed Stand,8,Helical,5500,36 inserts (4-row),72,1/8,38 x 4-5/8 inches,,,,,,,,,,,,,,,,
+south-bend-sb1091,,,,,,,,,,Closed Stand,8,Helical,7000,36 inserts (4-row),83,1/8,38 x 4-5/8 inches,45 to 135,,,,,,,,,,,,,,,
+powermatic-pj-882hh,,,,,,,,,,Closed Stand,8,Helical,7000,54 inserts (four-sided),83,1/8,44-3/4 inches long,45 to 135,,,,,,,,,,,,,,,
+grizzly-g0834,,,,,,,,,,Closed Stand,12,Helical,4950,96 inserts (8-row),84,1/8,47 x 5-3/8 inches,45 to 135,,,,,,,,,,,,,,,
+grizzly-g9860zx,,,,,,,,,,Closed Stand,12,Spiral,5900,84 inserts (6-row),80,5/16,39-1/4 x 4-3/4 inches,45 to 135,,,,,,,,,,,,,,,
+wen-6550t,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,,2,3/32,26,,,,,,,
+wen-6552t,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,8500,3,3/32,26,,,,,,,
+craftsman-cmew320,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,8000,2,1/16,26,,,,,,,
+porter-cable-pc305tp,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,8000,2,3/32,26.2,,,,,,,
+bauer-63445,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,9400,2,3/32,,,,,,,,
+dewalt-dw734,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12.5,6,Straight Knife,10000,3,1/8,26,,,,,,,
+ridgid-r4331,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6.125,Straight Knife,9000,3,1/8,23.5,,,,,,,
+delta-22-555,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,,2,3/32,,,,,,,,
+dewalt-dw735x,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Straight Knife,10000,3,1/8,,,,,,,,
+makita-2012nb,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,12,6,Straight Knife,8500,2,1/8,28,,,,,,,
+rikon-25-130h,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Segmented Insert,10000,26,1/8,26,,,,,,,
+cutech-40200hc-ct,,,,,,,,,,,,,,,,,,,Benchtop/Lunchbox,13,6,Spiral,10000,26,1/8,26,,,,,,,
+grizzly-g0453,,,,,,,,,,,,,,,,,,,Stationary,15,8,Straight Knife,4800,3,3/32,16 / 30 (two-speed),,,,,,,
+grizzly-g0453z,,,,,,,,,,,,,,,,,,,Stationary,15,8,Spiral,4800,74,3/32,16 / 30 (two-speed),,,,,,,
+shop-fox-w1742h,,,,,,,,,,,,,,,,,,,Stationary,15,8,Helical,4800,75,3/32,16 / 30 (two-speed),,,,,,,
+jet-jwp-15bhh,,,,,,,,,,,,,,,,,,,Stationary,15,6,Helical,5200,48,1/8,16 / 20 (two-speed),,,,,,,
+powermatic-209hh,,,,,,,,,,,,,,,,,,,Stationary,20,8,Helical,5000,100,,24 / 31 (two-speed),,,,,,,
+jet-jwp-208hh-1,,,,,,,,,,,,,,,,,,,Stationary,20,8,Helical,5000,92,3/32,24 / 31 (two-speed),,,,,,,
+grizzly-g0454z,,,,,,,,,,,,,,,,,,,Stationary,20,8,Spiral,4800,98,3/16,16 / 20 (two-speed),,,,,,,
+grizzly-g0544,,,,,,,,,,,,,,,,,,,Stationary,20,7,Spiral,5200,96,1/8,17 to 26 (variable),,,,,,,
+metabo-hpt-c10fcgs,,,,,,,,,,,,,,,,,,,,,,,,,,,Compound,10,,"Single, 0-45 left",52 left / 52 right,,"9 (0, 15, 22.5, 31.6, 45 left and right)"
+wen-mm1011,,,,,,,,,,,,,,,,,,,,,,,,,,,Sliding Compound,10,12,"Single, 0-45 left",45 left / 45 right,6.75,"9 (0, 15, 22.5, 30, 45)"
+ryobi-tss103,,,,,,,,,,,,,,,,,,,,,,,,,,,Sliding Compound,10,12,"Single, 0-45 left",47 left / 47 right,,"9 (0, 15, 22.5, 31.6, 45)"
+craftsman-cmxemar120,,,,,,,,,,,,,,,,,,,,,,,,,,,Compound,10,,"Single, 0-47 left",47 left / 55 right,,"Miter 0, 15, 22.5, 31.6, 45 left and 55 right"
+dewalt-dws715,,,,,,,,,,,,,,,,,,,,,,,,,,,Compound,12,8,"Single, 0-48 left",50 left / 50 right,5.5,"14 (0, 10, 15, 22.5, 31.6, 35.3, 45, 50)"
+metabo-hpt-c12fdhs,,,,,,,,,,,,,,,,,,,,,,,,,,,Compound,12,8,"Dual, 0-48 left and right",52 left / 52 right,5.125,"Miter 0, 15, 22.5, 31.6, 45"
+ryobi-tss120l,,,,,,,,,,,,,,,,,,,,,,,,,,,Sliding Compound,12,13.5,"Single, 0-45 left",45 left / 45 right,5.5,"9 (0, 15, 22.5, 31.6, 45)"
+ridgid-r4123,,,,,,,,,,,,,,,,,,,,,,,,,,,Compound,12,8,"Dual, 0-48 left and right",50 left / 50 right,6.75,"9 miter (0, 15, 22.5, 31.6, 45) + 7 bevel"
+dewalt-dws779,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,14,"Dual, 0-48 left and right",50 left / 60 right,6.75,"10 (0, 15, 22.5, 31.6, 45, 60)"
+metabo-hpt-c12rsh2s,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,12.25,"Dual, 0-45 left and right",45 left / 57 right,7.5,"0, 15, 22.5, 31.6, 45 left and right"
+ridgid-r4222,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,16,"Dual, 0-48 left and right",70 left / 70 right,4,13 miter + 9 bevel
+makita-ls1018,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,10,12,"Dual, 0-45 left and right",47 left / 60 right,,"Miter 0, 15, 22.5, 31.6, 45; bevel 0 and 45"
+dewalt-dws780,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,14,"Dual, 0-49 left and right",50 left / 60 right,6.75,"10 (0, 15, 22.5, 31.6, 45, 60)"
+makita-ls1019l,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,10,12,"Dual, 0-48 left and right",60 left / 60 right,5.25,"0, 15, 22.5, 31.6, 45, 60 left and right"
+milwaukee-6955-20,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,13.5,"Dual, 0-45 left and right",55 left / 60 right,6.55,"0, 15, 22.5, 31.6, 45 left and right, 60 right (digital readout)"
+bosch-gcm12sd,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,14,"Dual, 0-47 left and right",52 left / 60 right,6.75,"Miter 0, 15, 22.5, 31.6, 45, 60 right; bevel 0, 33.9, 45, 47"
+festool-kapex-ks-120-reb,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,10.25,12,"Dual, 47 left / 46 right",60 left / 60 right,4.75,"Miter 0, 15, 22.5, 30, 45 (60 right); bevel 0 and 45"
+festool-ksc-60-eb,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,8.5,12,"Dual, 47 left / 46 right",60 left / 60 right,,Miter detents at common angles; no bevel detents
+makita-ls1219l,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,15,"Dual, 0-48 left and right",60 left / 60 right,6.75,"Miter 0, 15, 22.5, 31.6, 45, 60 left and right; bevel 0 and 45"
+makita-xsl08,,,,,,,,,,,,,,,,,,,,,,,,,,,Dual-Bevel Sliding Compound,12,15,"Dual, 0-48 left and right",60 left / 60 right,6.75,"Miter 0, 15, 22.5, 31.6, 45, 60 left and right"

@@ -259,7 +259,7 @@ Some machine categories have specs that don't apply to others. A table saw has r
 
 **How the join works:** Column A of `category_specs` is `machine_slug`, which must exactly match a `machine_slug` in the Entries tab. At build time, Hugo fetches the tab, builds a lookup keyed by slug, and pulls the matching category-specific fields into each entry page. The single.html template renders each category's rows only when they're populated, so an entry only shows the spec rows relevant to its category.
 
-**Which categories use it:** Band saws use only the shared Entries schema and have no `category_specs` row. Table saws, jointers, and planers each have a row on this tab with their category-specific fields. A machine only populates the fields for its own category; all other columns on its row stay empty.
+**Which categories use it:** Band saws use only the shared Entries schema and have no `category_specs` row. Table saws, jointers, planers, and miter saws each have a row on this tab with their category-specific fields. A machine only populates the fields for its own category; all other columns on its row stay empty.
 
 **One tab, extended per category.** New categories add their columns to this same tab rather than creating a new tab. This keeps a single join in the Hugo build. Each new category also needs its params added to the content adapter (`content/_content.gotmpl`) and its display rows added to `single.html`.
 
@@ -304,9 +304,25 @@ Some machine categories have specs that don't apply to others. A table saw has r
 | max_depth_per_pass | Inches. |
 | feed_rate | Feet per minute. Note if variable or two-speed, e.g. "26 / 32 (two-speed)". |
 
-**Naming-collision rule.** Jointers and planers both have a cutterhead and knives. To keep their fields distinct on the shared tab, planer cutterhead fields carry a `planer_` prefix (`planer_cutterhead_type`, `planer_cutterhead_speed`, `planer_knife_count`), while the unprefixed versions (`cutterhead_type`, `cutterhead_speed`, `knife_count`) belong to jointers. When adding a future category that reuses a concept already on the tab, prefix the new category's version to avoid collisions.
+### Miter Saw fields
+
+| Field | Notes |
+|---|---|
+| miter_saw_type | Standard, Compound, Sliding Compound, or Dual-Bevel Sliding Compound. |
+| miter_blade_size | Inches. Typically 7.25, 10, or 12. Prefixed to avoid colliding with the table saw `blade_size`. |
+| max_crosscut_capacity | Inches. Widest board it can cut at 90 degrees. |
+| bevel_range | Single or dual, with degree range. E.g. "Dual, 0-48 left and right". |
+| miter_range | Degree range left and right. E.g. "50 left / 60 right". |
+| max_vertical_capacity | Inches. Max height against the fence, for baseboard and crown. |
+| positive_stops | Number and common angles of preset detents. E.g. "9 stops". |
+
+Columns land at AB through AH on the tab (as of the July 2026 miter saw launch), after the planer fields.
+
+**Naming-collision rule.** Several categories reuse the same concept. Keep fields distinct with a category prefix. Planer cutterhead fields carry a `planer_` prefix (`planer_cutterhead_type`, `planer_cutterhead_speed`, `planer_knife_count`) so they don't collide with the jointer's unprefixed `cutterhead_type`, `cutterhead_speed`, `knife_count`. Likewise the miter saw blade field is `miter_blade_size` so it doesn't collide with the table saw's `blade_size`. When adding a future category that reuses a concept already on the tab, prefix the new category's version.
 
 **Snipe (planers):** Snipe, the shallow dip a planer can leave at board ends, is a major planer topic but rarely a published spec. It is not a `category_specs` field. Reflect it in the `owner_praise` or `owner_limitations` prose on the Entries row instead.
+
+**Cut accuracy and detent play (miter saws):** How precisely a miter saw holds a set angle, and whether its positive stops are dead-on, is a major community topic that isn't a clean published spec. It is not a `category_specs` field. Reflect it in the `owner_praise` or `owner_limitations` prose instead.
 
 **Alignment:** Use Apps Script with individual `setValue` calls for `category_specs` rows, same as the Entries tab. After writing, confirm each row's `machine_slug` in column A exactly matches the corresponding Entries slug. A mismatch means the specs will not join and will not display on the entry page.
 
