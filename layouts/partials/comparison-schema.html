@@ -6,24 +6,24 @@
 {{- if $a.affiliate_price_1 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_1 | float) -}}{{- end -}}
 {{- if $a.affiliate_price_2 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_2 | float) -}}{{- end -}}
 {{- if $a.affiliate_price_3 }}{{- $pricesA = $pricesA | append ($a.affiliate_price_3 | float) -}}{{- end -}}
-{{- $lowA := "" -}}{{- if $pricesA }}{{- $lowA = index (sort $pricesA) 0 -}}{{- end -}}
+{{- $lowA := "" -}}{{- $highA := "" -}}{{- if $pricesA }}{{- $lowA = index (sort $pricesA) 0 -}}{{- $highA = index (sort $pricesA) (sub (len $pricesA) 1) -}}{{- end -}}
 
 {{/* Lowest price for machine B */}}
 {{- $pricesB := slice -}}
 {{- if $b.affiliate_price_1 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_1 | float) -}}{{- end -}}
 {{- if $b.affiliate_price_2 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_2 | float) -}}{{- end -}}
 {{- if $b.affiliate_price_3 }}{{- $pricesB = $pricesB | append ($b.affiliate_price_3 | float) -}}{{- end -}}
-{{- $lowB := "" -}}{{- if $pricesB }}{{- $lowB = index (sort $pricesB) 0 -}}{{- end -}}
+{{- $lowB := "" -}}{{- $highB := "" -}}{{- if $pricesB }}{{- $lowB = index (sort $pricesB) 0 -}}{{- $highB = index (sort $pricesB) (sub (len $pricesB) 1) -}}{{- end -}}
 
 {{/* Product A */}}
 {{- $itemA := dict "@type" "Product" "name" $a.machine_name "category" $a.category -}}
 {{- with $a.manufacturer }}{{- $itemA = merge $itemA (dict "brand" (dict "@type" "Brand" "name" .)) -}}{{- end -}}
-{{- if $lowA }}{{- $itemA = merge $itemA (dict "offers" (dict "@type" "AggregateOffer" "priceCurrency" "USD" "lowPrice" (printf "%v" $lowA) "availability" "https://schema.org/InStock")) -}}{{- end -}}
+{{- if $lowA }}{{- $itemA = merge $itemA (dict "offers" (dict "@type" "AggregateOffer" "priceCurrency" "USD" "lowPrice" (printf "%v" $lowA) "highPrice" (printf "%v" $highA) "availability" "https://schema.org/InStock")) -}}{{- end -}}
 
 {{/* Product B */}}
 {{- $itemB := dict "@type" "Product" "name" $b.machine_name "category" $b.category -}}
 {{- with $b.manufacturer }}{{- $itemB = merge $itemB (dict "brand" (dict "@type" "Brand" "name" .)) -}}{{- end -}}
-{{- if $lowB }}{{- $itemB = merge $itemB (dict "offers" (dict "@type" "AggregateOffer" "priceCurrency" "USD" "lowPrice" (printf "%v" $lowB) "availability" "https://schema.org/InStock")) -}}{{- end -}}
+{{- if $lowB }}{{- $itemB = merge $itemB (dict "offers" (dict "@type" "AggregateOffer" "priceCurrency" "USD" "lowPrice" (printf "%v" $lowB) "highPrice" (printf "%v" $highB) "availability" "https://schema.org/InStock")) -}}{{- end -}}
 
 {{- $data := dict
   "@context" "https://schema.org/"

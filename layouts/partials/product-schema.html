@@ -4,7 +4,8 @@
 {{- if .Params.affiliate_price_2 }}{{- $prices = $prices | append (.Params.affiliate_price_2 | float) -}}{{- end -}}
 {{- if .Params.affiliate_price_3 }}{{- $prices = $prices | append (.Params.affiliate_price_3 | float) -}}{{- end -}}
 {{- $lowest := "" -}}
-{{- if $prices }}{{- $lowest = index (sort $prices) 0 -}}{{- end -}}
+{{- $highest := "" -}}
+{{- if $prices }}{{- $lowest = index (sort $prices) 0 -}}{{- $highest = index (sort $prices) (sub (len $prices) 1) -}}{{- end -}}
 
 {{- $desc := printf "%s A %s in the %s tier. %s" .Params.machine_name .Params.category .Params.tier (.Params.who_its_for | truncate 200) -}}
 
@@ -25,6 +26,7 @@
       "@type" "AggregateOffer"
       "priceCurrency" "USD"
       "lowPrice" (printf "%v" $lowest)
+      "highPrice" (printf "%v" $highest)
       "offerCount" (printf "%d" (len $prices))
       "availability" "https://schema.org/InStock")) -}}
 {{- end -}}
